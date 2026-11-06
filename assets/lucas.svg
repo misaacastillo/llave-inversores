@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="lucas worried" viewBox="0 0 420 600" width="420" height="600" role="img" aria-labelledby="lucas-title"><title id="lucas-title">Lucas, conductor de Quilmes</title><style>.smile{display:none}.flat,.brow{display:block}</style>
+        <ellipse cx="210" cy="584" rx="130" ry="13" fill="rgba(11,31,77,0.35)"/>
+        <path d="M162 440 L152 568 L203 568 L208 450 Z" fill="#13296A"/>
+        <path d="M212 450 L217 568 L268 568 L258 440 Z" fill="#13296A"/>
+        <rect x="140" y="562" width="68" height="20" rx="10" fill="#fff"/>
+        <rect x="212" y="562" width="68" height="20" rx="10" fill="#fff"/>
+        <path d="M140 282 Q114 360 124 428" stroke="#FF6A2B" stroke-width="34" stroke-linecap="round" fill="none"/>
+        <circle cx="125" cy="440" r="17" fill="#FF9A5C"/>
+        <path d="M140 262 Q210 238 280 262 Q300 270 300 300 L292 456 Q210 472 128 456 L120 300 Q120 270 140 262 Z" fill="#FF6A2B"/>
+        <path d="M182 258 Q210 292 238 258" stroke="#FF9A5C" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <path d="M168 398 H252" stroke="rgba(255,255,255,0.28)" stroke-width="4" stroke-linecap="round"/>
+        <g class="arm" transform="rotate(155 282 282)">
+          <path d="M282 282 Q328 232 336 166" stroke="#FF6A2B" stroke-width="34" stroke-linecap="round" fill="none"/>
+          <circle cx="337" cy="146" r="19" fill="#FF9A5C"/>
+          <ellipse cx="322" cy="150" rx="7" ry="11" fill="#FF9A5C" transform="rotate(-30 322 150)"/>
+        </g>
+        <rect x="194" y="214" width="32" height="42" rx="12" fill="#FF9A5C"/>
+        <circle cx="146" cy="176" r="12" fill="#FF9A5C"/><circle cx="274" cy="176" r="12" fill="#FF9A5C"/>
+        <circle cx="210" cy="170" r="66" fill="#FF9A5C"/>
+        <path d="M146 166 Q138 100 202 96 Q264 92 276 154 Q262 128 232 126 Q198 142 158 132 Q150 146 146 166 Z" fill="#0B1F4D"/>
+        <circle cx="186" cy="180" r="6.5" fill="#0B1F4D"/><circle cx="234" cy="180" r="6.5" fill="#0B1F4D"/>
+        <circle cx="170" cy="200" r="10" fill="#FF9A5C" opacity="0.35"/><circle cx="250" cy="200" r="10" fill="#FF9A5C" opacity="0.35"/>
+        <path class="smile" d="M190 204 Q210 222 230 204" stroke="#0B1F4D" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path class="flat" d="M194 213 Q210 204 226 213" stroke="#0B1F4D" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <g class="brow" stroke="#0B1F4D" stroke-width="5" stroke-linecap="round"><path d="M172 166 L196 158"/><path d="M248 166 L224 158"/></g>
+      </svg>

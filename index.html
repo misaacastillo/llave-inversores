@@ -1,0 +1,2224 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0B1F4D">
+<meta name="description" content="llave: presupuestos comparables y reseñas atadas a trabajos confirmados. Investigación y propuesta de piloto en Quilmes, por Misael Castillo.">
+<title>llave · Presupuestos que podés verificar</title>
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/instrument-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrument-sans-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face {
+  font-family:"Instrument Sans";
+  src:url("assets/fonts/instrument-sans-latin-400-normal.woff2") format("woff2");
+  font-weight:400;
+  font-display:swap
+}
+@font-face {
+  font-family:"Instrument Sans";
+  src:url("assets/fonts/instrument-sans-latin-500-normal.woff2") format("woff2");
+  font-weight:500;
+  font-display:swap
+}
+@font-face {
+  font-family:"Instrument Sans";
+  src:url("assets/fonts/instrument-sans-latin-600-normal.woff2") format("woff2");
+  font-weight:600;
+  font-display:swap
+}
+@font-face {
+  font-family:"Instrument Sans";
+  src:url("assets/fonts/instrument-sans-latin-700-normal.woff2") format("woff2");
+  font-weight:700;
+  font-display:swap
+}
+:root {
+  --blue:#0B1F4D;
+  --surface:#13296A;
+  --light:#1C3580;
+  --orange:#FF6A2B;
+  --hover:#FF9A5C;
+  --paper:#F4F1EA;
+  --white:#fff;
+  --muted:rgba(255,255,255,.78);
+  --gutter:clamp(20px,5vw,96px);
+  --space:clamp(160px,13vw,220px);
+  --small:15px;
+  --body:18px;
+  --heading:clamp(28px,2.8vw,40px);
+  --display:clamp(44px,5.28vw,76px);
+  --figure:clamp(120px,15.28vw,220px)
+}
+* {
+  box-sizing:border-box
+}
+html {
+  scroll-behavior:smooth;
+  scroll-padding-top:100px
+}
+body {
+  margin:0;
+  background:var(--blue);
+  color:var(--white);
+  font-family:"Instrument Sans",sans-serif;
+  font-size:var(--body);
+  line-height:1.5;
+  font-variant-numeric:tabular-nums;
+  -webkit-font-smoothing:antialiased
+}
+body,button,input {
+  font-variant-numeric:tabular-nums
+}
+h1,h2,h3,p,figure,blockquote,dl,dd {
+  margin:0
+}
+h1,h2,h3 {
+  font-weight:600
+}
+h1,h2 {
+  letter-spacing:-.045em;
+  line-height:1
+}
+h2 {
+  font-size:var(--heading)
+}
+h3 {
+  font-size:var(--body);
+  line-height:1.5
+}
+p {
+  max-width:62ch
+}
+a {
+  color:inherit;
+  text-underline-offset:5px
+}
+button,input {
+  font:inherit
+}
+button,a,input,label {
+  touch-action:manipulation
+}
+button {
+  cursor:pointer
+}
+button,a {
+  transition:transform .2s ease-out,opacity .2s ease-out
+}
+a:hover {
+  opacity:.82
+}
+a:active,button:active {
+  transform:scale(.98)
+}
+:focus-visible {
+  outline:3px solid var(--orange);
+  outline-offset:5px
+}
+img,svg {
+  display:block;
+  max-width:100%
+}
+img {
+  height:auto
+}
+button {
+  color:inherit
+}
+button,input,fieldset {
+  border:0
+}
+button {
+  background:none
+}
+fieldset {
+  padding:0;
+  margin:0;
+  min-width:0
+}
+legend {
+  padding:0
+}
+.shell {
+  margin-inline:var(--gutter)
+}
+.section {
+  padding-block:calc(var(--space)/2)
+}
+.section+.section {
+  margin-top:0
+}
+.dim {
+  color:var(--muted)
+}
+.small,small,figcaption {
+  font-size:var(--small);
+  line-height:1.5
+}
+.small {
+  display:block
+}
+.button {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:52px;
+  padding:14px 23px;
+  border-radius:0;
+  background:var(--orange);
+  color:var(--blue);
+  font-weight:600;
+  text-decoration:none;
+  line-height:1.25
+}
+.button:hover {
+  background:var(--hover);
+  color:var(--blue)
+}
+.text-link {
+  display:inline-flex;
+  align-items:center;
+  min-height:44px;
+  font-weight:500
+}
+.skip {
+  position:fixed;
+  top:12px;
+  left:var(--gutter);
+  z-index:200;
+  transform:translateY(-160%)
+}
+.skip:focus {
+  transform:translateY(0)
+}
+/* Glass is confined to navigation, the budget stub and UI inside phones. */
+.glass {
+  background:rgba(19,41,106,.9);
+  -webkit-backdrop-filter:blur(24px) saturate(140%);
+  backdrop-filter:blur(24px) saturate(140%)
+}
+.site-nav {
+  position:fixed;
+  z-index:100;
+  inset:0 0 auto;
+  min-height:80px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  padding:12px var(--gutter)
+}
+.brand {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  font-weight:700;
+  font-size:28px;
+  letter-spacing:-.04em
+}
+.brand img {
+  width:38px;
+  height:38px
+}
+.nav-links {
+  display:flex;
+  gap:32px;
+  align-items:center;
+  margin-left:auto
+}
+.nav-links a {
+  text-decoration:none;
+  min-height:44px;
+  display:flex;
+  align-items:center
+}
+.site-nav .button {
+  min-height:48px
+}
+.mobile-menu {
+  display:none
+}
+.mobile-menu summary {
+  cursor:pointer;
+  min-height:44px;
+  display:flex;
+  align-items:center;
+  font-weight:600
+}
+.mobile-menu summary::marker {
+  content:""
+}
+.mobile-menu summary::-webkit-details-marker {
+  display:none
+}
+.mobile-menu nav {
+  position:absolute;
+  top:100%;
+  left:0;
+  right:0;
+  background:var(--surface);
+  padding:20px var(--gutter);
+  display:grid;
+  gap:12px
+}
+.mobile-menu nav a {
+  padding-block:8px
+}
+.hero {
+  padding-top:150px;
+  padding-bottom:60px;
+  position:relative
+}
+.hero-grid {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:36px;
+  align-items:center
+}
+.hero-copy {
+  align-self:center;
+  position:relative;
+  z-index:2
+}
+.hero h1 {
+  font-size:clamp(56px,4.5vw,120px);
+  line-height:.96;
+  letter-spacing:-.05em
+}
+.hero h1 span {
+  display:block;
+  white-space:nowrap
+}
+.hero-lead {
+  font-size:20px;
+  margin-top:40px;
+  max-width:48ch;
+  line-height:1.5
+}
+.hero-actions {
+  display:flex;
+  align-items:center;
+  gap:25px;
+  margin-top:32px;
+  flex-wrap:wrap
+}
+.hero-art {
+  position:relative;
+  min-height:710px;
+  isolation:isolate
+}
+.budget-anchor {
+  position:relative;
+  z-index:3;
+  width:78%;
+  margin-top:30px
+}
+.paper {
+  background:var(--paper);
+  color:var(--blue)
+}
+.saw {
+  clip-path:polygon(0 1%,2.5% 0,5% 1%,7.5% 0,10% 1%,12.5% 0,15% 1%,17.5% 0,20% 1%,22.5% 0,25% 1%,27.5% 0,30% 1%,32.5% 0,35% 1%,37.5% 0,40% 1%,42.5% 0,45% 1%,47.5% 0,50% 1%,52.5% 0,55% 1%,57.5% 0,60% 1%,62.5% 0,65% 1%,67.5% 0,70% 1%,72.5% 0,75% 1%,77.5% 0,80% 1%,82.5% 0,85% 1%,87.5% 0,90% 1%,92.5% 0,95% 1%,97.5% 0,100% 1%,100% 99%,97.5% 100%,95% 99%,92.5% 100%,90% 99%,87.5% 100%,85% 99%,82.5% 100%,80% 99%,77.5% 100%,75% 99%,72.5% 100%,70% 99%,67.5% 100%,65% 99%,62.5% 100%,60% 99%,57.5% 100%,55% 99%,52.5% 100%,50% 99%,47.5% 100%,45% 99%,42.5% 100%,40% 99%,37.5% 100%,35% 99%,32.5% 100%,30% 99%,27.5% 100%,25% 99%,22.5% 100%,20% 99%,17.5% 100%,15% 99%,12.5% 100%,10% 99%,7.5% 100%,5% 99%,2.5% 100%,0 99%)
+}
+.budget {
+  aspect-ratio:5/7;
+  padding:36px 28px 30px;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  transform-origin:top left
+}
+.letterhead {
+  font-size:var(--small);
+  font-weight:600;
+  max-width:28ch;
+  line-height:1.45
+}
+.budget-client {
+  margin-top:24px
+}
+.budget .rows {
+  margin-top:28px
+}
+.ticket-row {
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+  margin-block:14px;
+  font-size:var(--small);
+  line-height:1.5
+}
+.ticket-row .desc {
+  max-width:63%
+}
+.ticket-row .amount {
+  white-space:nowrap;
+  font-weight:600
+}
+.dots {
+  flex:1;
+  min-width:12px;
+  border-bottom:4px dotted currentColor;
+  opacity:.45;
+  transform:translateY(-4px)
+}
+.inverted {
+  background:var(--blue);
+  color:var(--paper);
+  padding:16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  font-weight:600
+}
+.budget .inverted {
+  margin-top:auto;
+  font-size:var(--heading);
+  letter-spacing:-.04em
+}
+.total-amount {
+  color:var(--orange);
+  white-space:nowrap
+}
+.budget-note {
+  margin-top:15px;
+  font-size:var(--small)
+}
+.stamp {
+  position:absolute;
+  left:22px;
+  top:66%;
+  z-index:4;
+  background:var(--orange);
+  color:var(--blue);
+  padding:12px 16px;
+  font-size:var(--heading);
+  font-weight:700;
+  letter-spacing:-.04em;
+  transform:rotate(-8deg);
+  white-space:nowrap
+}
+.hero-caption {
+  margin-top:17px;
+  max-width:35ch
+}
+.budget-stub {
+  position:fixed;
+  z-index:80;
+  left:var(--gutter);
+  bottom:22px;
+  width:200px;
+  padding:15px 16px;
+  border-radius:18px;
+  pointer-events:none;
+  font-size:var(--small);
+  line-height:1.3;
+  opacity:0;
+  visibility:hidden
+}
+.budget-stub b {
+  display:block;
+  font-weight:600
+}
+.budget-stub.is-visible {
+  opacity:1;
+  visibility:visible
+}
+/* The HTML/CSS iPhone reuses the reference's frame, island, glass bars and sheets. */
+.phone {
+  width:344px;
+  max-width:100%;
+  aspect-ratio:400/820;
+  border-radius:56px;
+  padding:10px;
+  background:var(--light);
+  color:var(--blue);
+  position:relative
+}
+.phone .scr {
+  position:relative;
+  height:100%;
+  border-radius:47px;
+  overflow:hidden;
+  background:var(--paper)
+}
+.island {
+  position:absolute;
+  z-index:5;
+  top:13px;
+  left:50%;
+  width:100px;
+  height:28px;
+  transform:translateX(-50%);
+  background:var(--blue);
+  border-radius:20px
+}
+.statusbar {
+  display:flex;
+  justify-content:space-between;
+  padding:17px 24px 0;
+  font-size:var(--small);
+  font-weight:600
+}
+.battery {
+  display:block;
+  width:23px;
+  height:12px;
+  background:var(--blue);
+  border-radius:3px;
+  margin-top:5px
+}
+.app-body {
+  padding:36px 18px 90px
+}
+.app-title {
+  font-size:28px;
+  line-height:1;
+  letter-spacing:-.04em;
+  margin-bottom:14px;
+  font-weight:600
+}
+.app-caption {
+  font-size:var(--small);
+  margin-top:10px
+}
+.app-row {
+  padding:14px 0;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:4px 10px
+}
+.app-row b {
+  font-size:var(--body);
+  line-height:1.25
+}
+.app-row small {
+  grid-column:1/-1
+}
+.app-row .app-price {
+  grid-column:2;
+  grid-row:1;
+  font-weight:600
+}
+.phone .ui-glass {
+  background:rgba(244,241,234,.88);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  backdrop-filter:blur(18px) saturate(140%)
+}
+.tab-bar {
+  position:absolute;
+  bottom:16px;
+  left:13px;
+  right:13px;
+  padding:12px 8px;
+  border-radius:25px;
+  display:flex;
+  justify-content:space-around;
+  gap:10px;
+  font-size:var(--small);
+  font-weight:600
+}
+.tab-bar span {
+  display:grid;
+  justify-items:center;
+  gap:4px
+}
+.rating-star {
+  display:inline-block;
+  width:14px;
+  height:14px;
+  vertical-align:-1px;
+  fill:currentColor;
+  stroke:currentColor;
+  stroke-width:2
+}
+.icon {
+  width:22px;
+  height:22px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:2
+}
+.hero-phone {
+  position:absolute;
+  right:-4px;
+  top:0;
+  transform:rotate(4deg);
+  width:325px;
+  z-index:1
+}
+.hero-phone .app-body {
+  padding-top:42px
+}
+.hero-phone .app-row {
+  padding-block:16px
+}
+.hero-phone .app-price {
+  grid-row:2;
+  grid-column:1;
+  font-size:28px
+}
+.hero-phone .app-row small {
+  grid-row:3
+}
+.hero-phone .app-title {
+  max-width:10ch
+}
+.hero-phone .app-body {
+  padding-left:22px
+}
+.phone-note {
+  margin-top:18px;
+  text-align:center
+}
+.problem {
+  padding-top:100px
+}
+.problem-top {
+  display:grid;
+  grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);
+  gap:80px;
+  align-items:start
+}
+.problem h2 {
+  font-size:var(--display);
+  max-width:15ch;
+  line-height:.97
+}
+.problem-note {
+  display:flex;
+  gap:15px;
+  align-items:flex-end
+}
+.problem-note p {
+  font-size:var(--body);
+  max-width:30ch
+}
+.lucas {
+  height:260px;
+  width:182px;
+  max-width:36%;
+  object-fit:contain;
+  flex:none
+}
+.problem-context {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,2fr);
+  gap:48px;
+  align-items:end;
+  margin-top:80px
+}
+.street-photo img {
+  width:100%;
+  aspect-ratio:3/2;
+  object-fit:cover
+}
+.street-photo figcaption {
+  margin-top:10px
+}
+.stats {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:36px 45px;
+  align-items:start
+}
+.stat dt {
+  font-size:clamp(32px,3.33vw,48px);
+  font-weight:600;
+  line-height:1;
+  letter-spacing:-.04em;
+  margin-bottom:14px
+}
+.stat dd {
+  font-size:16px;
+  max-width:25ch
+}
+.evidence {
+  background:var(--surface);
+  overflow:hidden;
+  padding-top:100px;
+  padding-bottom:0
+}
+.evidence-grid {
+  display:grid;
+  grid-template-columns:minmax(0,7.8fr) minmax(0,3.2fr);
+  gap:8%;
+  align-items:start
+}
+.survey-wrap {
+  padding-top:20px;
+  margin-bottom:-30px
+}
+.survey-paper {
+  padding:52px clamp(24px,3.5vw,58px) 70px;
+  transform:rotate(-1.5deg)
+}
+.survey-paper h2 {
+  text-align:center;
+  font-size:28px;
+  letter-spacing:-.03em
+}
+.survey-main {
+  margin-top:35px
+}
+.survey-number {
+  font-size:var(--figure);
+  color:var(--orange);
+  font-weight:600;
+  letter-spacing:-.065em;
+  line-height:.9;
+  white-space:nowrap
+}
+.survey-explainer {
+  font-size:20px;
+  max-width:30ch;
+  margin-top:14px
+}
+.survey-secondary {
+  margin-top:22px;
+  max-width:33ch
+}
+.concerns {
+  margin-top:38px
+}
+.concern {
+  margin-top:24px
+}
+.concern .ticket-row {
+  font-size:var(--body)
+}
+.concern .desc {
+  max-width:76%
+}
+.bar-track {
+  height:18px;
+  background:rgba(11,31,77,.1);
+  overflow:hidden
+}
+.bar {
+  display:block;
+  height:100%;
+  background:var(--blue);
+  width:var(--value);
+  transform-origin:left
+}
+.perforation {
+  border-top:5px dotted var(--blue);
+  margin-block:36px
+}
+.field-stories blockquote {
+  font-size:20px;
+  line-height:1.5;
+  margin-top:28px
+}
+.field-stories cite {
+  font-size:var(--small);
+  font-style:normal;
+  display:block;
+  margin-top:12px;
+  font-weight:600
+}
+.field-date {
+  margin-top:32px
+}
+.attached-photo {
+  background:var(--paper);
+  padding:10px 10px 14px;
+  margin:30px 0 28px auto;
+  max-width:300px;
+  transform:rotate(4deg)
+}
+.attached-photo img {
+  width:100%;
+  aspect-ratio:1.5;
+  object-fit:cover
+}
+.attached-photo figcaption {
+  margin-top:8px
+}
+.workshops {
+  padding-top:52px
+}
+.workshops h3 {
+  font-size:var(--heading);
+  line-height:1.05;
+  letter-spacing:-.04em
+}
+.workshop-names {
+  font-size:22px;
+  margin-top:24px
+}
+.workshops h4 {
+  font-size:var(--body);
+  margin:32px 0 12px;
+  font-weight:600
+}
+.workshops ul {
+  padding-left:20px;
+  margin:0;
+  display:grid;
+  gap:12px
+}
+.workshops li {
+  font-size:var(--body);
+  line-height:1.5
+}
+.solution {
+  padding-block:100px
+}
+.solution-grid {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:8%;
+  align-items:center;
+  min-height:90svh
+}
+.solution-stage {
+  display:grid;
+  justify-items:center;
+  gap:48px;
+  min-width:0
+}
+.solution .phone {
+  width:364px
+}
+.solution-panel {
+  max-width:100%
+}
+.enhanced .solution-panel[hidden] {
+  display:none
+}
+.solution-copy h2 {
+  max-width:18ch
+}
+.tabs {
+  display:flex;
+  flex-wrap:wrap;
+  gap:0 24px;
+  margin-top:35px
+}
+.tabs a {
+  font-size:19px;
+  line-height:1.35;
+  color:var(--muted);
+  text-decoration:none;
+  padding:12px 0;
+  position:relative;
+  min-height:48px
+}
+.tabs a[aria-selected="true"] {
+  color:var(--white)
+}
+.tabs a[aria-selected="true"]::after {
+  content:"";
+  position:absolute;
+  inset:auto 0 0;
+  height:3px;
+  background:var(--orange)
+}
+.tab-copy {
+  margin-top:32px;
+  min-height:110px;
+  max-width:45ch
+}
+.tab-copy p+p {
+  margin-top:20px
+}
+.solution-actions {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:12px;
+  margin-top:36px
+}
+.secondary-action {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  min-height:78px;
+  background:var(--light);
+  text-decoration:none;
+  font-weight:600;
+  line-height:1.3
+}
+.solution-actions .button {
+  min-height:78px;
+  padding:18px
+}
+.map {
+  height:280px;
+  position:relative;
+  background:var(--light);
+  margin:-14px -18px 0;
+  overflow:hidden
+}
+.map .streets {
+  width:100%;
+  height:100%;
+  stroke:var(--paper);
+  stroke-width:12;
+  fill:none;
+  opacity:.85
+}
+.map-label {
+  position:absolute;
+  top:24px;
+  left:18px;
+  right:18px;
+  padding:10px 13px;
+  border-radius:22px;
+  font-size:var(--small);
+  font-weight:600
+}
+.map-pin {
+  position:absolute;
+  width:30px;
+  height:38px;
+  color:var(--blue);
+  background:var(--paper);
+  border-radius:50% 50% 50% 0;
+  transform:rotate(-45deg);
+  display:grid;
+  place-items:center
+}
+.map-pin svg {
+  transform:rotate(45deg);
+  width:20px;
+  height:20px
+}
+.map-pin.p1 {
+  top:100px;
+  left:62px
+}
+.map-pin.p2 {
+  top:145px;
+  left:190px
+}
+.map-pin.p3 {
+  top:210px;
+  left:125px
+}
+.map-sheet {
+  padding:18px 14px;
+  border-radius:28px 28px 0 0;
+  position:relative;
+  margin:-28px -8px 0
+}
+.map-sheet .app-row {
+  padding-block:10px
+}
+.map-sheet .app-row b {
+  font-size:var(--small)
+}
+.map-sheet .app-row small {
+  font-size:var(--small)
+}
+.request-description {
+  padding:14px;
+  background:var(--blue);
+  color:var(--white);
+  font-size:var(--small);
+  margin-bottom:16px
+}
+.request-screen .app-row {
+  padding-block:16px
+}
+.confirmation {
+  background:var(--blue);
+  color:var(--white);
+  padding:20px 16px;
+  margin-top:24px
+}
+.confirmation p {
+  margin-top:12px
+}
+.confirmation .icon {
+  width:40px;
+  height:40px;
+  margin-bottom:14px
+}
+.confirm-row {
+  display:flex;
+  gap:8px;
+  align-items:center;
+  margin-top:16px;
+  font-size:var(--small)
+}
+.verified-review {
+  margin-top:22px;
+  font-size:var(--small)
+}
+.verified-review strong {
+  display:block;
+  margin-bottom:10px
+}
+.work-section {
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  padding-block:100px
+}
+.work-photo {
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  margin:0
+}
+.work-photo img {
+  height:100%;
+  width:100%;
+  object-fit:cover;
+  filter:brightness(.45)
+}
+.work-section::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:rgba(11,31,77,.65)
+}
+.work-grid {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:10%;
+  align-items:center
+}
+.work-copy h2 {
+  max-width:21ch;
+  font-size:var(--heading)
+}
+.work-copy p {
+  margin-top:30px;
+  max-width:30ch
+}
+.work-copy figcaption {
+  margin-top:35px;
+  max-width:30ch
+}
+.work-detail {
+  width:280px;
+  max-width:100%;
+  margin-top:32px;
+  background:var(--paper);
+  color:var(--blue);
+  padding:10px;
+  transform:rotate(-3deg)
+}
+.work-detail img {
+  width:100%;
+  aspect-ratio:1.5;
+  object-fit:cover
+}
+.work-detail figcaption {
+  margin-top:8px
+}
+.work-ticket {
+  padding:40px 30px 45px;
+  max-width:440px;
+  margin-left:auto;
+  width:100%
+}
+.work-ticket h3 {
+  margin-bottom:22px
+}
+.work-ticket .moment {
+  font-weight:700;
+  margin-top:22px
+}
+.work-ticket .ticket-row .desc {
+  max-width:58%
+}
+.work-ticket .ticket-row .amount {
+  white-space:normal;
+  text-align:right;
+  max-width:38%
+}
+.work-ticket .inverted {
+  margin-top:30px;
+  display:block;
+  font-size:var(--body)
+}
+.work-ticket .inverted span {
+  display:block;
+  font-weight:400;
+  margin-top:5px
+}
+.model-grid {
+  display:grid;
+  grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);
+  gap:8%;
+  align-items:center
+}
+.model-copy h2 {
+  max-width:21ch
+}
+.model-copy>p {
+  margin-top:28px;
+  max-width:42ch
+}
+.model-total {
+  margin-top:66px
+}
+.model-number {
+  font-size:clamp(140px,16vw,280px);
+  font-weight:600;
+  color:var(--orange);
+  line-height:.9;
+  letter-spacing:-.065em;
+  white-space:nowrap
+}
+.model-total figcaption {
+  margin-top:25px;
+  max-width:43ch
+}
+.model-receipt {
+  padding:40px 32px 46px;
+  transform:rotate(1.5deg)
+}
+.receipt-title {
+  font-weight:600;
+  margin-bottom:34px
+}
+.receipt-group {
+  margin-top:27px
+}
+.receipt-group>strong {
+  display:block;
+  margin-bottom:6px
+}
+.receipt-group .ticket-row {
+  margin-top:8px
+}
+.receipt-calculation {
+  text-align:right;
+  font-weight:600;
+  font-size:var(--heading);
+  letter-spacing:-.04em;
+  line-height:1.1
+}
+.model-receipt .inverted {
+  margin-top:32px;
+  font-size:var(--body)
+}
+.receipt-note {
+  margin-top:23px;
+  font-size:var(--small)
+}
+.pricing-grid {
+  display:grid;
+  grid-template-columns:minmax(0,3fr) minmax(0,4fr) minmax(0,4fr);
+  gap:64px
+}
+.pricing h2 {
+  font-size:var(--heading);
+  max-width:16ch
+}
+.price-menu h3 {
+  font-size:22px;
+  font-weight:600;
+  margin-bottom:20px;
+  line-height:1.25
+}
+.price-menu h3:not(:first-child) {
+  margin-top:38px
+}
+.price-menu .ticket-row {
+  font-size:var(--body);
+  margin-block:20px
+}
+.price-menu .desc {
+  max-width:70%
+}
+.competitor-row {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:24px;
+  margin-top:20px;
+  line-height:1.4
+}
+.competitor-row dt {
+  font-weight:600
+}
+.competitor-row dd {
+  color:var(--muted)
+}
+.menu-close {
+  font-size:20px;
+  max-width:69ch;
+  margin:70px 0 0 auto
+}
+.founder {
+  display:flex;
+  justify-content:center
+}
+.founder-letter {
+  width:640px;
+  max-width:100%;
+  padding:60px 60px 35px;
+  clip-path:polygon(0 0,100% 0,100% 99%,97.5% 100%,95% 99%,92.5% 100%,90% 99%,87.5% 100%,85% 99%,82.5% 100%,80% 99%,77.5% 100%,75% 99%,72.5% 100%,70% 99%,67.5% 100%,65% 99%,62.5% 100%,60% 99%,57.5% 100%,55% 99%,52.5% 100%,50% 99%,47.5% 100%,45% 99%,42.5% 100%,40% 99%,37.5% 100%,35% 99%,32.5% 100%,30% 99%,27.5% 100%,25% 99%,22.5% 100%,20% 99%,17.5% 100%,15% 99%,12.5% 100%,10% 99%,7.5% 100%,5% 99%,2.5% 100%,0 99%)
+}
+.letter-body {
+  font-size:17px
+}
+.letter-body p+p {
+  margin-top:24px
+}
+.signature {
+  margin-top:40px;
+  font-size:22px;
+  font-weight:600
+}
+.signature span {
+  display:block;
+  font-size:14px;
+  font-weight:400;
+  margin-top:5px
+}
+.founder-letter .perforation {
+  margin:32px -35px 0
+}
+.tear-off {
+  min-height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  font-size:var(--small)
+}
+.contact {
+  background:var(--orange);
+  color:var(--blue);
+  min-height:90svh;
+  display:grid;
+  align-items:center;
+  margin-top:0;
+  padding-block:100px
+}
+.contact-grid {
+  display:grid;
+  grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+  gap:12%;
+  align-items:end
+}
+.contact-copy h2 {
+  font-size:clamp(56px,7.77vw,112px);
+  line-height:.95;
+  max-width:10ch
+}
+.contact-copy p {
+  font-size:17px;
+  max-width:36ch;
+  margin-top:35px
+}
+.contact [data-ui].contact-dialog {
+  padding:36px;
+  width:440px;
+  max-width:100%;
+  margin-left:auto;
+  box-shadow:0 28px 65px rgba(11,31,77,.25)
+}
+.contact-dialog h3 {
+  font-size:28px;
+  line-height:1.1;
+  letter-spacing:-.04em;
+  margin-bottom:28px
+}
+.contact-dialog label[for] {
+  display:block;
+  margin-bottom:9px
+}
+.contact-dialog input[type="text"] {
+  width:100%;
+  min-height:54px;
+  background:var(--white);
+  color:var(--blue);
+  padding:14px
+}
+.contact-dialog input[type="text"]:focus-visible {
+  outline-color:var(--blue)
+}
+.contact-dialog fieldset {
+  margin-top:24px
+}
+.contact-dialog legend {
+  font-size:var(--small);
+  margin-bottom:10px
+}
+.segments {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:4px;
+  background:rgba(11,31,77,.1);
+  padding:4px
+}
+.segments label {
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  min-height:54px;
+  text-align:center;
+  font-size:var(--small);
+  font-weight:600
+}
+.segments input {
+  appearance:none;
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  margin:0;
+  cursor:pointer;
+  border-radius:0
+}
+.segments input:checked {
+  background:var(--blue)
+}
+.segments input:checked+span {
+  color:var(--white);
+  position:relative;
+  pointer-events:none
+}
+.segments input:focus-visible {
+  outline-offset:1px
+}
+.segments span {
+  position:relative;
+  pointer-events:none
+}
+.contact-dialog .button {
+  margin-top:26px;
+  width:100%
+}
+.mail-note {
+  margin-top:18px;
+  font-size:var(--small)
+}
+.contact :focus-visible {
+  outline-color:var(--blue)
+}
+.site-footer {
+  background:var(--surface);
+  padding:55px var(--gutter) 30px
+}
+.footer-top {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  font-size:var(--small);
+  flex-wrap:wrap
+}
+.footer-top>a:last-child {
+  margin-left:auto;
+  min-height:44px;
+  display:flex;
+  align-items:center
+}
+.footer-statement {
+  font-size:8.45vw;
+  letter-spacing:-.05em;
+  line-height:1;
+  margin-top:70px;
+  font-weight:600;
+  white-space:nowrap
+}
+.footer-bottom {
+  font-size:14px;
+  margin-top:40px;
+  display:flex;
+  justify-content:space-between;
+  gap:30px;
+  align-items:end
+}
+.source-credits {
+  max-width:90ch
+}
+.image-credits {
+  margin-top:12px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:5px 16px
+}
+.copyright {
+  white-space:nowrap
+}
+.footer-bottom a:hover {
+  opacity:.82
+}
+@media(min-width:1600px) {
+  .hero-art {
+  min-height:800px
+}
+.hero-phone {
+  width:370px
+}
+.budget {
+  padding:45px 40px
+}
+.hero h1 {
+  font-size:clamp(56px,4.5vw,120px)
+}
+}
+@media(min-width:1100px) {
+  .problem-context {
+  grid-template-columns:minmax(0,1fr);
+  margin-top:120px;
+  position:relative;
+  padding-bottom:0
+}
+.stats {
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:40px;
+  order:-1
+}
+.street-photo {
+  width:42%;
+  margin-top:24px
+}
+.street-photo img {
+  aspect-ratio:2/1
+}
+.survey-secondary {
+  margin-left:auto;
+  margin-top:18px
+}
+.survey-explainer {
+  max-width:33ch
+}
+}
+@media(max-width:1099px) {
+  .hero-grid {
+  grid-template-columns:minmax(0,1fr);
+  gap:60px
+}
+.hero-copy {
+  max-width:800px
+}
+.hero h1 {
+  font-size:clamp(56px,7.2vw,90px)
+}
+.hero-art {
+  width:650px;
+  max-width:100%;
+  margin-inline:auto;
+  min-height:790px
+}
+.budget-anchor {
+  width:76%
+}
+.hero-phone {
+  width:340px
+}
+.problem-top {
+  grid-template-columns:minmax(0,1fr);
+  gap:40px
+}
+.problem h2 {
+  max-width:19ch
+}
+.problem-note {
+  max-width:650px;
+  justify-content:space-between
+}
+.problem-note p {
+  max-width:46ch
+}
+.problem-context {
+  gap:32px
+}
+.evidence-grid {
+  grid-template-columns:minmax(0,1fr);
+  gap:70px
+}
+.survey-wrap {
+  width:92%;
+  margin:0 auto
+}
+.survey-paper {
+  transform:rotate(1deg)
+}
+.workshops {
+  padding:0 0 80px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:0 38px
+}
+.workshops h3,.workshop-names {
+  grid-column:1/-1
+}
+.workshops h3 {
+  max-width:24ch
+}
+.workshop-names {
+  margin-top:15px
+}
+.workshops h4 {
+  margin-top:28px
+}
+.solution-grid {
+  gap:40px;
+  min-height:auto
+}
+.solution .phone {
+  width:320px
+}
+.solution-actions {
+  grid-template-columns:minmax(0,1fr)
+}
+.tabs {
+  gap:0 18px
+}
+.solution-copy h2 {
+  font-size:32px
+}
+.work-grid {
+  gap:40px
+}
+.work-ticket {
+  padding:35px 22px
+}
+.model-grid {
+  gap:35px
+}
+.model-number {
+  font-size:clamp(120px,16vw,200px)
+}
+.model-receipt {
+  padding:34px 22px
+}
+.model-receipt .inverted {
+  flex-wrap:wrap
+}
+.pricing-grid {
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:40px
+}
+.pricing h2 {
+  grid-column:1/-1;
+  max-width:25ch
+}
+.contact-grid {
+  gap:40px
+}
+.contact [data-ui].contact-dialog {
+  padding:28px
+}
+.footer-top {
+  gap:15px 25px
+}
+.site-footer {
+  padding-top:35px
+}
+}
+@media(max-width:699px) {
+  :root {
+  --space:112px;
+  --body:17px;
+  --heading:32px;
+  --figure:clamp(100px,30.7vw,150px)
+}
+html {
+  scroll-padding-top:85px
+}
+.section {
+  padding-block:56px
+}
+.section+.section {
+  margin-top:0
+}
+.site-nav {
+  min-height:72px;
+  gap:12px;
+  padding-block:10px
+}
+.brand {
+  font-size:22px;
+  gap:6px
+}
+.brand img {
+  height:30px;
+  width:30px
+}
+.site-nav .button {
+  font-size:15px;
+  padding:13px 14px;
+  min-height:46px
+}
+.nav-links {
+  display:none
+}
+.mobile-menu {
+  display:block;
+  margin-left:auto
+}
+.mobile-menu summary {
+  font-size:15px
+}
+.hero {
+  padding-top:125px;
+  padding-bottom:0
+}
+.hero-grid {
+  gap:52px
+}
+.hero h1 {
+  font-size:12vw;
+  line-height:.98
+}
+.hero-lead {
+  font-size:20px;
+  margin-top:40px;
+  max-width:34ch
+}
+.hero-actions {
+  gap:12px 20px;
+  margin-top:28px
+}
+.hero-art {
+  min-height:0;
+  display:flex;
+  flex-direction:column;
+  gap:40px
+}
+.budget-anchor {
+  width:100%;
+  margin-top:0
+}
+.budget {
+  padding:30px 22px 26px;
+  min-height:600px
+}
+.budget-client {
+  margin-top:20px
+}
+.budget .rows {
+  margin-top:23px
+}
+.budget .inverted {
+  font-size:28px
+}
+.stamp {
+  font-size:32px;
+  top:65%;
+  left:14px;
+  padding:10px 14px
+}
+.hero-caption {
+  margin-top:12px
+}
+.hero-phone {
+  position:relative;
+  right:auto;
+  top:auto;
+  transform:none;
+  width:325px;
+  max-width:100%;
+  margin-inline:auto
+}
+.budget-stub {
+  left:20px;
+  bottom:16px;
+  width:120px;
+  padding:12px 10px;
+  font-size:14px;
+  border-radius:16px
+}
+.problem {
+  padding-top:56px
+}
+.problem-top {
+  gap:30px
+}
+.problem h2 {
+  font-size:44px;
+  max-width:16ch
+}
+.problem-note {
+  display:block
+}
+.problem-note p {
+  max-width:42ch
+}
+.lucas {
+  width:182px;
+  max-width:100%;
+  height:260px;
+  margin:24px 0 0 auto
+}
+.problem-context {
+  display:flex;
+  flex-direction:column;
+  margin-top:40px;
+  gap:40px
+}
+.street-photo {
+  width:100%;
+  order:2
+}
+.street-photo img {
+  aspect-ratio:3/2
+}
+.stats {
+  width:100%;
+  gap:35px 20px
+}
+.stat dt {
+  font-size:32px
+}
+.stat dd {
+  font-size:16px
+}
+.evidence {
+  padding-top:56px;
+  padding-bottom:0
+}
+.evidence .shell {
+  margin-inline:20px
+}
+.evidence-grid {
+  gap:58px
+}
+.survey-wrap {
+  width:92%;
+  padding-top:5px
+}
+.survey-paper {
+  padding:32px 20px 48px
+}
+.survey-paper h2 {
+  font-size:28px;
+  line-height:1
+}
+.survey-main {
+  margin-top:32px
+}
+.survey-number {
+  font-size:clamp(88px,26.5vw,130px)
+}
+.survey-explainer {
+  font-size:20px;
+  line-height:1.4;
+  margin-top:15px
+}
+.survey-secondary {
+  font-size:15px
+}
+.concern .ticket-row {
+  font-size:15px;
+  gap:7px
+}
+.concern .desc {
+  max-width:77%
+}
+.attached-photo {
+  max-width:90%;
+  margin-top:32px;
+  transform:rotate(3deg)
+}
+.field-stories blockquote {
+  font-size:20px;
+  line-height:1.5
+}
+.workshops {
+  display:block;
+  padding-bottom:56px
+}
+.workshops h3 {
+  font-size:32px;
+  max-width:20ch
+}
+.workshop-names {
+  font-size:22px
+}
+.solution-grid {
+  display:flex;
+  flex-direction:column;
+  gap:40px;
+  align-items:stretch
+}
+.solution-stage {
+  order:2;
+  width:100%;
+  gap:40px
+}
+.solution-copy {
+  display:contents
+}
+.solution-copy h2 {
+  order:0;
+  font-size:32px
+}
+.tabs {
+  order:1;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin-top:-15px
+}
+.tabs a {
+  font-size:17px;
+  line-height:1.3;
+  padding-block:10px;
+  display:flex;
+  align-items:center
+}
+.tab-copy {
+  order:3;
+  margin-top:0;
+  min-height:0
+}
+.solution-actions {
+  order:4;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  margin-top:0;
+  gap:10px
+}
+.solution-actions a {
+  font-size:15px;
+  min-height:90px;
+  padding:15px
+}
+.solution .phone {
+  width:330px
+}
+.phone-note {
+  font-size:15px
+}
+.work-section {
+  padding-block:56px
+}
+.work-grid {
+  grid-template-columns:minmax(0,1fr);
+  gap:40px
+}
+.work-copy h2 {
+  font-size:32px;
+  max-width:22ch
+}
+.work-copy p {
+  margin-top:24px
+}
+.work-copy figcaption {
+  margin-top:20px
+}
+.work-ticket {
+  max-width:100%;
+  padding:34px 24px 40px
+}
+.work-ticket .ticket-row {
+  gap:9px
+}
+.model-grid {
+  grid-template-columns:minmax(0,1fr);
+  gap:45px
+}
+.model-copy h2 {
+  font-size:32px;
+  max-width:22ch
+}
+.model-copy>p {
+  margin-top:24px
+}
+.model-total {
+  margin-top:42px
+}
+.model-number {
+  font-size:clamp(120px,35.9vw,190px)
+}
+.model-total figcaption {
+  font-size:15px;
+  max-width:36ch
+}
+.model-receipt {
+  padding:36px 26px 40px;
+  transform:rotate(1deg)
+}
+.receipt-calculation {
+  font-size:32px
+}
+.pricing-grid {
+  display:block
+}
+.pricing h2 {
+  font-size:32px;
+  max-width:20ch;
+  margin-bottom:35px
+}
+.price-menu+.price-menu {
+  margin-top:45px
+}
+.price-menu .ticket-row {
+  font-size:17px
+}
+.menu-close {
+  margin-top:40px;
+  font-size:20px;
+  line-height:1.5
+}
+.founder-letter {
+  padding:32px 25px 22px;
+  width:100%;
+  clip-path:polygon(0 0,100% 0,100% 99%,95% 100%,90% 99%,85% 100%,80% 99%,75% 100%,70% 99%,65% 100%,60% 99%,55% 100%,50% 99%,45% 100%,40% 99%,35% 100%,30% 99%,25% 100%,20% 99%,15% 100%,10% 99%,5% 100%,0 99%)
+}
+.signature {
+  margin-top:32px
+}
+.founder-letter .perforation {
+  margin-inline:-10px
+}
+.tear-off {
+  flex-direction:column;
+  align-items:stretch;
+  justify-content:center;
+  padding-block:22px;
+  gap:16px
+}
+.contact {
+  padding-block:64px;
+  min-height:90svh;
+  margin-top:0
+}
+.contact-grid {
+  grid-template-columns:minmax(0,1fr);
+  gap:40px
+}
+.contact-copy h2 {
+  font-size:clamp(56px,14.4vw,80px);
+  max-width:10ch
+}
+.contact-copy p {
+  margin-top:26px;
+  font-size:17px
+}
+.contact [data-ui].contact-dialog {
+  margin:0;
+  width:100%;
+  padding:28px 24px
+}
+.contact-dialog h3 {
+  font-size:28px
+}
+.segments label {
+  font-size:15px
+}
+.site-footer {
+  padding:35px var(--gutter) 30px
+}
+.footer-top {
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:12px;
+  font-size:15px
+}
+.footer-top>a:last-child {
+  margin-left:0
+}
+.footer-statement {
+  font-size:8.55vw;
+  line-height:1.05;
+  margin-top:40px
+}
+.footer-bottom {
+  display:block;
+  font-size:14px;
+  margin-top:30px
+}
+.image-credits {
+  display:grid;
+  gap:10px
+}
+.copyright {
+  margin-top:24px
+}
+}
+@media(prefers-reduced-motion:reduce) {
+  html {
+  scroll-behavior:auto
+}
+*,*::before,*::after {
+  animation:none!important;
+  transition:none!important
+}
+.budget-stub {
+  transition:none
+}
+.bar {
+  transform:none!important
+}
+}
+.founder-letter {
+  clip-path:url(#letter-wave)
+}
+.work-ticket,.model-receipt {
+  clip-path:polygon(0 0,100% 0,100% 98%,97.5% 100%,95% 98%,92.5% 100%,90% 98%,87.5% 100%,85% 98%,82.5% 100%,80% 98%,77.5% 100%,75% 98%,72.5% 100%,70% 98%,67.5% 100%,65% 98%,62.5% 100%,60% 98%,57.5% 100%,55% 98%,52.5% 100%,50% 98%,47.5% 100%,45% 98%,42.5% 100%,40% 98%,37.5% 100%,35% 98%,32.5% 100%,30% 98%,27.5% 100%,25% 98%,22.5% 100%,20% 98%,17.5% 100%,15% 98%,12.5% 100%,10% 98%,7.5% 100%,5% 98%,2.5% 100%,0% 98%)
+}
+.mobile-menu summary:hover,.segments label:hover { opacity:.82 }
+
+/* Sin scroll horizontal: recorta el iPhone y la foto del contacto */
+html, body { overflow-x: clip; }
+.hero, .contact { overflow-x: clip; }
+@media(max-width:699px){ .budget{aspect-ratio:auto; width:100%; max-width:100%} .solution-panel{max-width:100%} }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><clipPath id="letter-wave" clipPathUnits="objectBoundingBox"><path d="M0 0H1V.985 Q.975 1 .95 .985 T.9 .985 T.85 .985 T.8 .985 T.75 .985 T.7 .985 T.65 .985 T.6 .985 T.55 .985 T.5 .985 T.45 .985 T.4 .985 T.35 .985 T.3 .985 T.25 .985 T.2 .985 T.15 .985 T.1 .985 T.05 .985 T0 .985 Z"/></clipPath></defs></svg>
+<a class="skip button" href="#contenido">Ir al contenido</a>
+<header class="site-nav glass">
+  <a class="brand" href="#arriba" aria-label="llave, volver al inicio"><img src="assets/logo.svg" width="38" height="38" alt="">llave</a>
+  <nav class="nav-links" aria-label="Principal"><a href="#problema">Problema</a><a href="#evidencia">Evidencia</a><a href="#modelo">Modelo</a></nav>
+  <details class="mobile-menu"><summary>Menú</summary><nav aria-label="Principal móvil"><a href="#problema">Problema</a><a href="#evidencia">Evidencia</a><a href="#modelo">Modelo</a></nav></details>
+  <a class="button" href="#piloto">Sumate al piloto</a>
+</header>
+<main id="contenido">
+<section class="hero" id="arriba" aria-labelledby="hero-title">
+ <div class="shell hero-grid">
+  <div class="hero-copy">
+   <h1 id="hero-title"><span>Presupuestos que</span><span>podés verificar.</span></h1>
+   <p class="hero-lead">llave conecta a conductores con talleres verificados de Quilmes: presupuestos comparables y reseñas atadas a un trabajo confirmado.</p>
+   <div class="hero-actions"><a class="button" href="#piloto">Sumate al piloto</a><a class="text-link" href="#evidencia">Ver la evidencia ↓</a></div>
+  </div>
+  <div class="hero-art">
+   <figure class="budget-anchor">
+    <div class="paper saw budget" id="presupuesto">
+     <p class="letterhead">Taller Avenida · Presupuesto N.º 0480 · Quilmes</p>
+     <p class="budget-client small">Cliente: Lucas<br>Vehículo: Gol 2014</p>
+     <div class="rows">
+      <div class="ticket-row"><span class="desc">Pastillas de freno</span><span class="dots" aria-hidden="true"></span><span class="amount">$85.000</span></div>
+      <div class="ticket-row"><span class="desc">Discos de freno</span><span class="dots" aria-hidden="true"></span><span class="amount">$160.000</span></div>
+      <div class="ticket-row"><span class="desc">Amortiguadores delanteros</span><span class="dots" aria-hidden="true"></span><span class="amount">$200.000</span></div>
+      <div class="ticket-row"><span class="desc">Mano de obra</span><span class="dots" aria-hidden="true"></span><span class="amount">$35.000</span></div>
+     </div>
+     <div class="inverted"><span>TOTAL</span><span class="total-amount">$480.000</span></div>
+     <p class="budget-note">Escenario ilustrativo · montos hipotéticos.</p>
+     <div class="stamp">¿Era necesario?</div>
+    </div>
+    <figcaption class="hero-caption dim">Lucas es un personaje ilustrativo. Taller Avenida es un nombre ficticio.</figcaption>
+   </figure>
+   <div class="phone hero-phone" data-ui aria-label="Prototipo: tres presupuestos de ejemplo para pastillas de freno">
+    <div class="scr"><div class="island" aria-hidden="true"></div><div class="statusbar" aria-hidden="true"><span>9:41</span><span class="battery"></span></div>
+     <div class="app-body"><p class="app-title">Compará con llave</p><p class="small">Pastillas de freno<br>Precios de ejemplo · Hipótesis</p>
+      <div class="app-row"><b>Frenos Sur</b><span class="app-price">$85.000</span><small><svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,8 · 23 reseñas verificadas</small></div>
+      <div class="app-row"><b>Mecánica Bernal</b><span class="app-price">$92.000</span><small><svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,5 · 17 reseñas verificadas</small></div>
+      <div class="app-row"><b>Taller del Sur</b><span class="app-price">$98.000</span><small><svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,7 · 11 reseñas verificadas</small></div>
+      <p class="app-caption">Prototipo ilustrativo</p>
+     </div><div class="tab-bar ui-glass" aria-hidden="true"><span><svg class="icon"><use href="assets/icons.svg#i-search"/></svg>Buscar</span><span><svg class="icon"><use href="assets/icons.svg#i-file-text"/></svg>Presupuestos</span></div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+<aside class="budget-stub glass" aria-hidden="true"><span id="stub-label">Presupuesto de Lucas</span><b id="stub-total">$480.000</b></aside>
+<section class="section problem" id="problema" aria-labelledby="problem-title">
+ <div class="shell">
+  <div class="problem-top">
+   <h2 id="problem-title" data-reveal>Lucas no puede verificar nada.</h2>
+   <div class="problem-note" data-reveal><p>Le dijeron que además de las pastillas había que cambiar discos y amortiguadores. ¿Era cierto? No tiene cómo saberlo. Ni el diagnóstico, ni el precio, ni la reputación del taller se pueden comprobar.</p><img class="lucas" src="assets/lucas.svg" width="182" height="260" alt="Lucas, personaje ilustrativo, preocupado y con los brazos bajos"></div>
+  </div>
+  <div class="problem-context">
+   <figure class="street-photo" data-reveal><img src="assets/calle-bernal.jpg" width="1920" height="1440" loading="lazy" alt="Calle Zeballos de Bernal, con comercios y edificios"><figcaption>Calle Zeballos, Bernal, partido de Quilmes. Foto ilustrativa.</figcaption></figure>
+   <dl class="stats" data-reveal>
+    <div class="stat"><dt><span data-count="15.8" data-suffix=" M">15,8 M</span></dt><dd>vehículos en Argentina (AFAC 2025)</dd></div>
+    <div class="stat"><dt>14,8 años</dt><dd>antigüedad promedio. Más años, más taller.</dd></div>
+    <div class="stat"><dt>+630 mil</dt><dd>habitantes en Quilmes (Censo 2022)</dd></div>
+    <div class="stat"><dt>Bien de confianza</dt><dd>ni después de pagar sabés si era necesario.</dd></div>
+   </dl>
+  </div>
+ </div>
+</section>
+<section class="section evidence" id="evidencia" aria-labelledby="evidence-title">
+ <div class="shell evidence-grid">
+  <div class="survey-wrap" data-reveal>
+   <article class="paper survey-paper" data-paper="-1.5">
+    <h2 id="evidence-title">Lo que encontramos en el campo</h2>
+    <div class="survey-main"><p class="survey-number"><span data-count="56.3" data-suffix=" %">56,3 %</span></p><p class="survey-explainer">tuvo una mala experiencia con un taller</p><p class="survey-secondary small">40,6 % dice que es difícil encontrar uno de confianza</p></div>
+    <div class="concerns">
+     <div class="concern"><div class="ticket-row"><span class="desc">Desconfiar del diagnóstico o de reparaciones innecesarias</span><span class="dots" aria-hidden="true"></span><b class="amount">68,8 %</b></div><div class="bar-track"><span class="bar" style="--value:68.8%"></span></div></div>
+     <div class="concern"><div class="ticket-row"><span class="desc">No saber si el precio es justo</span><span class="dots" aria-hidden="true"></span><b class="amount">50 %</b></div><div class="bar-track"><span class="bar" style="--value:50%"></span></div></div>
+     <div class="concern"><div class="ticket-row"><span class="desc">No conocer la calidad del trabajo</span><span class="dots" aria-hidden="true"></span><b class="amount">50 %</b></div><div class="bar-track"><span class="bar" style="--value:50%"></span></div></div>
+    </div>
+    <figure class="attached-photo"><img src="assets/disco-freno.jpg" width="1920" height="1280" loading="lazy" alt="Detalle real de un disco de freno con la rueda desmontada"><figcaption>Disco de freno, foto ilustrativa.</figcaption></figure>
+    <div class="perforation" aria-hidden="true"></div>
+    <div class="field-stories">
+     <blockquote>Una conductora recibió un presupuesto de $450.000 que al día siguiente subió a $600.000. Tras consultar a un conocido, según cuenta, lo resolvió por $170.000.<cite>Conductora, Quilmes · relato del relevamiento</cite></blockquote>
+     <blockquote>Un empleado de una casa de repuestos contó que un cliente compró un embrague nuevo y otro taller le informó después que tenía uno reparado. Se enteró recién en otra reparación.<cite>Empleado de casa de repuestos · relato del relevamiento</cite></blockquote>
+    </div>
+    <p class="field-date small">36 respuestas · 32 analizadas · Quilmes y alrededores · noviembre 2026</p>
+    <p class="small">Se analizan las respuestas de quienes tienen auto o deciden dónde repararlo.</p>
+   </article>
+  </div>
+  <aside class="workshops" data-reveal>
+   <h3>La otra campana: 4 talleres</h3><p class="workshop-names">JMK · Ruedas NG · Boti · Joaco</p>
+   <div><h4>Lo que validaron</h4><ul><li>Algunos clientes nuevos llegan desconfiados (Lucas, de JMK, y Joaco).</li><li>El boca en boca es clave.</li><li>Los cuatro talleres necesitan sumar clientes.</li></ul></div>
+   <div><h4>Los límites que marcaron</h4><ul><li>Algunos servicios se presupuestan a distancia; otras reparaciones necesitan ver el auto (JMK).</li><li>Primero hay que consultar el precio de los repuestos. La publicidad sirve, pero hoy es difícil invertir en ella (Boti).</li><li>Joaco ofrece que el cliente desconfiado compre los repuestos por su cuenta.</li></ul></div>
+   <p class="small" style="margin-top:30px">Entrevistas: cuatro talleres y un empleado de atención de una casa de repuestos.</p>
+  </aside>
+ </div>
+</section>
+<section class="section solution" id="solucion" aria-labelledby="solution-title">
+ <div class="shell solution-grid">
+  <div class="solution-stage" data-reveal>
+   <div class="solution-panel" id="pantalla-buscar" aria-labelledby="tab-buscar">
+    <div class="phone" data-ui><div class="scr"><div class="island" aria-hidden="true"></div><div class="statusbar" aria-hidden="true"><span>9:41</span><span class="battery"></span></div><div class="app-body">
+     <div class="map"><svg class="streets" viewBox="0 0 330 280" preserveAspectRatio="none" aria-hidden="true"><path d="M-20 80 350 35M-20 170 350 125M-20 260 350 215M65-20 110 310M190-20 235 310M290-20 325 310"/></svg><div class="map-label ui-glass">Frenos · a menos de 3 km · <svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,5+</div><span class="map-pin p1"><svg class="icon"><use href="assets/icons.svg#i-wrench"/></svg></span><span class="map-pin p2"><svg class="icon"><use href="assets/icons.svg#i-wrench"/></svg></span><span class="map-pin p3"><svg class="icon"><use href="assets/icons.svg#i-wrench"/></svg></span></div>
+     <div class="map-sheet ui-glass"><p class="app-title">Talleres verificados</p><div class="app-row"><b>Frenos Sur</b><span><svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,8</span><small>23 reseñas verificadas</small></div><div class="app-row"><b>Mecánica Bernal</b><span><svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,5</span><small>17 reseñas verificadas</small></div><div class="app-row"><b>Taller del Sur</b><span><svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,7</span><small>11 reseñas verificadas</small></div></div>
+    </div><div class="tab-bar ui-glass" aria-hidden="true"><span><svg class="icon"><use href="assets/icons.svg#i-search"/></svg>Buscar</span><span><svg class="icon"><use href="assets/icons.svg#i-file-text"/></svg>Presupuestos</span></div></div></div>
+    <p class="phone-note small">Prototipo ilustrativo</p>
+   </div>
+   <div class="solution-panel" id="pantalla-pedir" aria-labelledby="tab-pedir">
+    <div class="phone" data-ui><div class="scr"><div class="island" aria-hidden="true"></div><div class="statusbar" aria-hidden="true"><span>9:41</span><span class="battery"></span></div><div class="app-body request-screen"><p class="app-title">Un pedido.<br>Tres presupuestos.</p><p class="request-description">Necesito cambiar las pastillas de freno de mi Gol 2014.</p><p class="small">Mismo trabajo · Precios de ejemplo<br>Hipótesis</p><div class="app-row"><b>Frenos Sur</b><span class="app-price">$85.000</span><small><svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,8 · 23 reseñas verificadas</small></div><div class="app-row"><b>Mecánica Bernal</b><span class="app-price">$92.000</span><small><svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,5 · 17 reseñas verificadas</small></div><div class="app-row"><b>Taller del Sur</b><span class="app-price">$98.000</span><small><svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,7 · 11 reseñas verificadas</small></div></div><div class="tab-bar ui-glass" aria-hidden="true"><span><svg class="icon"><use href="assets/icons.svg#i-message-circle"/></svg>Chat</span><span><svg class="icon"><use href="assets/icons.svg#i-calendar-check"/></svg>Reserva</span></div></div></div><p class="phone-note small">Prototipo ilustrativo</p>
+   </div>
+   <div class="solution-panel" id="pantalla-resena" aria-labelledby="tab-resena">
+    <div class="phone" data-ui><div class="scr"><div class="island" aria-hidden="true"></div><div class="statusbar" aria-hidden="true"><span>9:41</span><span class="battery"></span></div><div class="app-body"><p class="app-title">¿Se hizo<br>el trabajo?</p><p class="small">Pastillas de freno · Frenos Sur</p><div class="confirmation"><svg class="icon"><use href="assets/icons.svg#i-shield-check"/></svg><strong>Servicio confirmado</strong><div class="confirm-row"><svg class="icon"><use href="assets/icons.svg#i-check"/></svg>Taller: realizado</div><div class="confirm-row"><svg class="icon"><use href="assets/icons.svg#i-check"/></svg>Conductor: confirmado</div></div><div class="verified-review"><strong>Reseña verificada</strong><p>Atada a este trabajo, confirmado por ambas partes.</p><p class="app-caption">Ejemplo del flujo de verificación.</p></div></div><div class="tab-bar ui-glass" aria-hidden="true"><span><svg class="icon"><use href="assets/icons.svg#i-badge-check"/></svg>Mi trabajo</span><span><svg class="icon"><use href="assets/icons.svg#i-star"/></svg>Mi reseña</span></div></div></div><p class="phone-note small">Prototipo ilustrativo</p>
+   </div>
+  </div>
+  <div class="solution-copy">
+   <h2 id="solution-title" data-reveal>Lo que Lucas necesitaba</h2>
+   <div class="tabs" role="tablist" aria-label="Cómo usar llave" data-reveal><a id="tab-buscar" role="tab" href="#pantalla-buscar" aria-controls="pantalla-buscar">Buscar talleres</a><a id="tab-pedir" role="tab" href="#pantalla-pedir" aria-controls="pantalla-pedir">Pedir presupuestos</a><a id="tab-resena" role="tab" href="#pantalla-resena" aria-controls="pantalla-resena">Reseña verificada</a></div>
+   <div class="tab-copy" data-reveal><p id="copy-buscar">Busca por especialidad, distancia y reputación. Precios orientativos antes de llamar.</p><p id="copy-pedir">Describís el problema una sola vez. Los talleres compatibles responden y comparás en la misma pantalla.</p><p id="copy-resena">Solo opina quien hizo un servicio confirmado por las dos partes. Cada reseña está atada a un trabajo real.</p></div>
+   <div class="solution-actions" data-reveal><a class="button" href="#piloto">Sumate al piloto</a><a class="secondary-action" href="#modelo">Ver el modelo de negocio</a></div>
+  </div>
+ </div>
+</section>
+<section class="section work-section" id="funcionamiento" aria-labelledby="work-title">
+ <figure class="work-photo"><img src="assets/taller.jpg" width="1024" height="683" loading="lazy" alt="Un técnico levanta un auto con un crique para una reparación"></figure>
+ <div class="shell work-grid">
+  <div class="work-copy"><h2 id="work-title" data-reveal>Una reseña que solo existe si hubo trabajo</h2><p data-reveal>Del primer pedido a la confirmación: conductor y taller dejan registro del mismo servicio. Esa es la base de la reseña verificada que propone llave.</p><p class="small" style="margin-top:25px">Reparación de un auto, foto ilustrativa. No corresponde a un taller de llave.</p><figure class="work-detail" data-reveal><img src="assets/disco-freno.jpg" width="1920" height="1280" loading="lazy" alt="Detalle de un disco de freno"><figcaption>Detalle de freno, foto ilustrativa.</figcaption></figure></div>
+  <article class="paper saw work-ticket" data-reveal data-paper="0"><h3>Orden de trabajo · flujo propuesto</h3><p class="moment">Antes</p><div class="ticket-row"><span class="desc">Describe el problema</span><span class="dots" aria-hidden="true"></span><span class="amount">Conductor</span></div><div class="ticket-row"><span class="desc">Responden con presupuesto</span><span class="dots" aria-hidden="true"></span><span class="amount">Talleres compatibles</span></div><p class="moment">Durante</p><div class="ticket-row"><span class="desc">Compara precio, reputación y turno</span><span class="dots" aria-hidden="true"></span><span class="amount">Conductor</span></div><div class="ticket-row"><span class="desc">Chat y reserva</span><span class="dots" aria-hidden="true"></span><span class="amount">Ambos</span></div><p class="moment">Después</p><div class="ticket-row"><span class="desc">Marca el servicio como realizado</span><span class="dots" aria-hidden="true"></span><span class="amount">Taller</span></div><div class="ticket-row"><span class="desc">Confirma el servicio</span><span class="dots" aria-hidden="true"></span><span class="amount">Conductor</span></div><div class="inverted">Reseña verificada<span>→ atada a un trabajo real</span></div></article>
+ </div>
+</section>
+<section class="section model" id="modelo" aria-labelledby="model-title">
+ <div class="shell model-grid">
+  <div class="model-copy"><h2 id="model-title" data-reveal>Un escenario para entender el modelo</h2><p data-reveal>Gratis para conductores. Los talleres pagan una suscripción fija, sin comisión por trabajo.</p><p class="small" data-reveal>Hipótesis de modelo en validación.</p><figure class="model-total" data-reveal><p class="model-number"><span data-count="1.9" data-prefix="$" data-suffix=" M">$1,9 M</span></p><figcaption>facturación bruta mensual · escenario ilustrativo, no proyección</figcaption></figure></div>
+  <article class="paper saw model-receipt" data-reveal data-paper="1.5"><p class="receipt-title">Recibo · Escenario ilustrativo</p><div class="receipt-group"><strong>Talleres</strong><div class="ticket-row"><span>Suscripciones</span><span class="dots" aria-hidden="true"></span><span class="amount">50 × $35.000</span></div><p class="receipt-calculation">$1.750.000</p></div><div class="receipt-group"><strong>Publicidad · por mes</strong><div class="ticket-row"><span>Anunciantes</span><span class="dots" aria-hidden="true"></span><span class="amount">10 × $15.000</span></div><p class="receipt-calculation">$150.000</p></div><div class="receipt-group"><strong>Conductores</strong><div class="ticket-row"><span>Uso de la app</span><span class="dots" aria-hidden="true"></span><span class="amount">$0</span></div></div><div class="inverted"><span>TOTAL MENSUAL</span><span class="total-amount">$1.900.000</span></div><p class="receipt-note">Montos hipotéticos en validación con talleres.</p></article>
+ </div>
+</section>
+<section class="section pricing" id="precios" aria-labelledby="pricing-title">
+ <div class="shell">
+  <div class="pricing-grid"><h2 id="pricing-title" data-reveal>Qué cobra llave y quién más está</h2>
+   <div class="price-menu" data-reveal><h3>Para conductores</h3><div class="ticket-row"><span class="desc">Buscar, comparar y reservar</span><span class="dots" aria-hidden="true"></span><span class="amount">Gratis</span></div><h3>Para talleres (hipótesis)</h3><div class="ticket-row"><span class="desc">Prueba 30 días</span><span class="dots" aria-hidden="true"></span><span class="amount">$0</span></div><div class="ticket-row"><span class="desc">Suscripción mensual</span><span class="dots" aria-hidden="true"></span><span class="amount">$35.000</span></div><div class="ticket-row"><span class="desc">Publicidad destacada, marcada “Patrocinado”</span><span class="dots" aria-hidden="true"></span><span class="amount">$15.000<br><small>por mes</small></span></div></div>
+   <div class="price-menu" data-reveal><h3>Lo que ya existe</h3><dl><div class="competitor-row"><dt>Google Maps</dt><dd>encontrar talleres, sin presupuestos comparables</dd></div><div class="competitor-row"><dt>Bosch Car Service</dt><dd>red de talleres de una marca</dd></div><div class="competitor-row"><dt>Rutiox</dt><dd>lo más parecido en Argentina</dd></div><div class="competitor-row"><dt>TallerOS y mecapp</dt><dd>gestión del taller</dd></div><div class="competitor-row"><dt>ClickMechanic</dt><dd>presupuestos online (Reino Unido)</dd></div></dl></div>
+  </div><p class="menu-close" data-reveal>Nuestra apuesta no es inventar funciones: es juntarlas en una experiencia local con presupuestos comparables, reseñas verificadas y clientes medibles para el taller.</p>
+ </div>
+</section>
+<section class="section founder" id="fundador" aria-label="Carta del fundador">
+ <div class="shell" style="width:100%;display:flex;justify-content:center">
+  <article class="paper founder-letter" data-reveal data-paper="0"><div class="letter-body"><p>Empecé creyendo que el problema era encontrar un taller barato. Salí a preguntar y descubrí otra cosa: nadie puede verificar lo que le cobran.</p><p>Encuesté a 36 personas y hablé con cuatro talleres de Quilmes. Los conductores desconfían del diagnóstico; los talleres honestos no tienen cómo demostrarlo.</p><p>Hoy estoy cerrando la investigación. Lo que sigue es un prototipo con conductores y talleres, y después un piloto en Quilmes donde voy a medir si la confianza se convierte en turnos y trabajos reales.</p><p>Busco quien quiera acompañarme en ese piloto.</p></div><p class="signature">Misael Castillo<span>Fundador · Ingeniería Electrónica</span></p><div class="perforation" aria-hidden="true"></div><div class="tear-off"><span>Próximo hito: piloto en Quilmes</span><a class="button" href="#piloto">Sumate al piloto</a></div></article>
+ </div>
+</section>
+<section class="contact" id="piloto" aria-labelledby="contact-title">
+ <div class="shell contact-grid">
+  <div class="contact-copy"><h2 id="contact-title" data-reveal>Sumate al piloto.</h2><p data-reveal>Dejanos tu contacto y te mandamos el plan del piloto en Quilmes.</p></div>
+  <div class="contact-dialog paper" data-ui data-reveal><h3>Quiero saber más</h3><form id="pilot-form" action="mailto:misacastillo08@gmail.com" method="get" enctype="text/plain"><label for="nombre">Tu nombre</label><input id="nombre" name="nombre" type="text" autocomplete="name" maxlength="120" required><fieldset><legend>Cómo querés participar</legend><div class="segments"><label><input name="perfil" type="radio" value="Soy inversor" checked><span>Soy inversor</span></label><label><input name="perfil" type="radio" value="Tengo un taller"><span>Tengo un taller</span></label></div></fieldset><button class="button" type="submit">Enviar</button><p class="mail-note">Se abre tu correo con el mensaje listo para enviar a <a href="mailto:misacastillo08@gmail.com">misacastillo08@gmail.com</a>.</p></form></div>
+ </div>
+</section>
+</main>
+<footer class="site-footer" id="footer">
+ <div class="footer-top"><span>llave</span><span>Quilmes, Buenos Aires</span><a href="mailto:misacastillo08@gmail.com">misacastillo08@gmail.com</a><a href="#arriba">Volver arriba ↑</a></div>
+ <p class="footer-statement">Compará. Elegí. Confiá.</p>
+ <div class="footer-bottom"><div class="source-credits"><p>Fuentes: AFAC, 2025 · parque automotor argentino; INDEC, Censo 2022 · población de Quilmes. Relevamiento propio: noviembre de 2026.</p><div class="image-credits"><a href="https://commons.wikimedia.org/w/index.php?curid=58218625" target="_blank" rel="noopener noreferrer">Calle de Bernal: Mbusin · CC BY-SA 4.0</a><a href="https://www.flickr.com/photos/26344495@N05/49967130491" target="_blank" rel="noopener noreferrer">Reparación: Ivan Radic · CC BY 2.0</a><a href="https://commons.wikimedia.org/w/index.php?curid=186975326" target="_blank" rel="noopener noreferrer">Disco de freno: Shixart1985 · CC BY 2.0</a></div></div><p class="copyright">© 2026 llave</p></div>
+</footer>
+<script src="assets/js/gsap.min.js"></script>
+<script src="assets/js/ScrollTrigger.min.js"></script>
+<script>
+(() => {
+ 'use strict';
+ const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+ const tabs = [...document.querySelectorAll('[role="tab"]')];
+ const panels = [...document.querySelectorAll('.solution-panel')];
+ const copies = [...document.querySelectorAll('.tab-copy p')];
+ let active = 0;
+ const setTab = (next, focus = false) => {
+  const direction = next >= active ? 1 : -1;
+  tabs.forEach((tab, i) => { tab.setAttribute('aria-selected', String(i === next)); tab.tabIndex = i === next ? 0 : -1; });
+  panels.forEach((panel, i) => { panel.hidden = i !== next; panel.setAttribute('role', 'tabpanel'); panel.tabIndex = 0; panel.setAttribute('aria-describedby', copies[i].id); });
+  copies.forEach((copy, i) => { copy.hidden = i !== next; });
+  if (!motionQuery.matches && typeof gsap !== 'undefined') gsap.fromTo(panels[next], { x: direction * 28, opacity: 0 }, { x: 0, opacity: 1, duration: .35, ease: 'power2.out', overwrite: true });
+  active = next;
+  if (focus) tabs[next].focus();
+ };
+ document.documentElement.classList.add('enhanced');
+ tabs.forEach((tab, i) => {
+  tab.addEventListener('click', event => { event.preventDefault(); setTab(i); });
+  tab.addEventListener('keydown', event => {
+   let next;
+   if (event.key === ' ' || event.key === 'Enter') { event.preventDefault(); setTab(i); return; }
+   if (event.key === 'ArrowRight') next = (active + 1) % tabs.length;
+   if (event.key === 'ArrowLeft') next = (active - 1 + tabs.length) % tabs.length;
+   if (event.key === 'Home') next = 0;
+   if (event.key === 'End') next = tabs.length - 1;
+   if (next !== undefined) { event.preventDefault(); setTab(next, true); }
+  });
+ });
+ setTab(0);
+ const menu = document.querySelector('.mobile-menu');
+ menu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { menu.open = false; }));
+ document.addEventListener('keydown', event => { if (event.key === 'Escape' && menu.open) { menu.open = false; menu.querySelector('summary').focus(); } });
+ document.getElementById('pilot-form').addEventListener('submit', event => {
+  event.preventDefault();
+  const form = event.currentTarget;
+  if (!form.reportValidity()) return;
+  const name = form.elements.nombre.value.trim();
+  if (!name) { form.elements.nombre.setCustomValidity('Escribí tu nombre.'); form.reportValidity(); return; }
+  const profile = form.elements.perfil.value;
+  const subject = 'Piloto de llave en Quilmes · ' + profile;
+  const body = 'Hola Misael,\n\nSoy ' + name + '. ' + profile + '.\nQuiero recibir el plan del piloto de llave en Quilmes.\n\nGracias,\n' + name;
+  window.location.href = 'mailto:misacastillo08@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+ });
+ document.getElementById('nombre').addEventListener('input', event => event.currentTarget.setCustomValidity(''));
+ const stub = document.querySelector('.budget-stub');
+ const budget = document.getElementById('presupuesto');
+ const anchor = document.querySelector('.budget-anchor');
+ const solution = document.getElementById('solucion');
+ const footer = document.getElementById('footer');
+ let morphProgress = 0;
+ const updateStub = () => {
+  const isSolution = solution.getBoundingClientRect().top < innerHeight * .65;
+  const hasPassed = motionQuery.matches ? true : typeof ScrollTrigger === 'undefined' ? anchor.getBoundingClientRect().bottom < innerHeight : morphProgress > .82;
+  stub.classList.toggle('is-visible', hasPassed && footer.getBoundingClientRect().top > innerHeight);
+  document.getElementById('stub-label').textContent = isSolution ? '3 presupuestos verificados' : 'Presupuesto de Lucas';
+  document.getElementById('stub-total').textContent = isSolution ? 'desde $85.000' : '$480.000';
+ };
+ window.addEventListener('scroll', updateStub, { passive: true });
+ updateStub();
+ if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+ gsap.registerPlugin(ScrollTrigger);
+ const mm = gsap.matchMedia();
+ mm.add('(prefers-reduced-motion: no-preference)', () => {
+  document.querySelectorAll('section').forEach(section => {
+   const parts = [...section.querySelectorAll('[data-reveal]')].filter(el => !el.parentElement.closest('[data-reveal]'));
+   if (!parts.length) return;
+   const order = el => el.matches('h1,h2,h3') ? 0 : el.matches('p,.tabs,.tab-copy,.problem-note') ? 1 : 2;
+   parts.sort((a,b) => order(a) - order(b));
+   gsap.from(parts, { y: 24, opacity: 0, duration: .65, stagger: .07, ease: 'power2.out', scrollTrigger: { trigger: section, start: 'top 86%', once: true } });
+  });
+  gsap.from('.hero-copy > *', { y: 24, opacity: 0, stagger: .07, duration: .65, ease: 'power2.out' });
+  gsap.fromTo('.stamp', { scale: 1.3, opacity: 0 }, { scale: 1, opacity: 1, delay: .45, duration: .35, ease: 'power3.out' });
+  document.querySelectorAll('[data-paper]').forEach(paper => {
+   gsap.fromTo(paper, { rotation: 0 }, { rotation: Number(paper.dataset.paper), duration: .8, ease: 'power2.out', scrollTrigger: { trigger: paper, start: 'top 88%', once: true } });
+  });
+  document.querySelectorAll('[data-count]').forEach(el => {
+   const state = { value: 0 };
+   gsap.to(state, { value: Number(el.dataset.count), duration: 1.4, ease: 'power2.out', onUpdate: () => { el.textContent = (el.dataset.prefix || '') + state.value.toLocaleString('es-AR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + (el.dataset.suffix || ''); }, scrollTrigger: { trigger: el, start: 'top 92%', once: true } });
+  });
+  gsap.from('.bar', { scaleX: 0, duration: .9, stagger: .07, ease: 'power2.out', scrollTrigger: { trigger: '.concerns', start: 'top 88%', once: true } });
+  gsap.fromTo('.work-photo img', { scale: 1.08 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: '.work-section', start: 'top bottom', end: 'bottom top', scrub: .8 } });
+  const timeline = gsap.timeline({ scrollTrigger: { trigger: anchor, start: 'top 120px', end: '+=400', pin: anchor, pinSpacing: false, scrub: .7, invalidateOnRefresh: true, onUpdate: self => { morphProgress = self.progress; updateStub(); } } });
+  const targetWidth = () => innerWidth < 700 ? 120 : 200;
+  timeline.to(budget, { x: () => Math.max(20, Math.min(96, innerWidth * .05)) - anchor.getBoundingClientRect().left, y: () => innerHeight - 120 - 22 - budget.offsetHeight * targetWidth() / budget.offsetWidth, scale: () => targetWidth() / budget.offsetWidth, ease: 'none', duration: .8 }, 0)
+   .to(budget, { opacity: 0, duration: .2, ease: 'none' }, .8)
+   .to('.hero-caption', { opacity: 0, duration: .3, ease: 'none' }, 0);
+  return () => { morphProgress = 0; updateStub(); };
+ });
+ document.fonts.ready.then(() => ScrollTrigger.refresh());
+ window.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
+ motionQuery.addEventListener('change', updateStub);
+})();
+</script>
+</body>
+</html>
