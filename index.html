@@ -2065,6 +2065,7 @@ input[type="range"] { display:block; width:100%; min-width:0; margin:3px 0 0; mi
 }
 
 .letter-kicker{font-weight:700;color:#FF6A2B;letter-spacing:.01em}
+.problem-context{grid-template-columns:minmax(0,1fr)}
 </style>
 </head>
 <body>
@@ -2125,7 +2126,6 @@ input[type="range"] { display:block; width:100%; min-width:0; margin:3px 0 0; mi
    <div class="problem-note" data-reveal><p>Le dijeron que además de las pastillas había que cambiar discos y amortiguadores. ¿Era cierto? No tiene cómo saberlo. Ni el diagnóstico, ni el precio, ni la reputación del taller se pueden comprobar.</p><img class="lucas" src="assets/lucas.svg" width="182" height="260" alt="Lucas, personaje ilustrativo, preocupado y con los brazos bajos"></div>
   </div>
   <div class="problem-context">
-   <figure class="street-photo" data-reveal><img src="assets/calle-bernal.jpg" width="1920" height="1440" loading="lazy" alt="Calle Zeballos de Bernal, con comercios y edificios"><figcaption>Calle Zeballos, Bernal, partido de Quilmes. Foto ilustrativa.</figcaption></figure>
    <dl class="stats" data-reveal>
     <div class="stat"><dt><span data-count="15.8" data-suffix=" M">15,8 M</span></dt><dd>vehículos en Argentina (AFAC 2025)</dd></div>
     <div class="stat"><dt>14,8 años</dt><dd>antigüedad promedio. Más años, más taller.</dd></div>
@@ -2262,7 +2262,7 @@ input[type="range"] { display:block; width:100%; min-width:0; margin:3px 0 0; mi
      <figcaption>Insignia ilustrativa · hipótesis de un modelo futuro.</figcaption>
     </figure>
     <div class="verification-levels">
-     <div><h4>Hoy · propuesta para el piloto</h4><p>La reseña verificada solo existiría si hubo un servicio confirmado por las dos partes: conductor y taller. Esa es la base de la confianza que propone llave para el piloto.</p></div>
+     <div><h4>Hoy · propuesta para el piloto</h4><p>La reseña verificada solo existiría si hubo un servicio confirmado por las dos partes: conductor y taller. Esa es la base de la confianza que propone llave para el piloto.</p><p><b>Regla propuesta: la pieza vieja se muestra.</b> Si el taller cambia un repuesto, le muestra al cliente la pieza que sacó y en qué estado estaba. Así el conductor ve con sus ojos que el cambio hacía falta.</p></div>
      <div class="verification-future"><h4>Visión a futuro · no forma parte del piloto</h4><p class="hypothesis">Hipótesis de un modelo más avanzado · todavía no existe.</p><p>El taller que quiera la insignia de verificación de llave podría solicitarla. A cambio, llave pondría una persona propia en el taller para verificar en el día a día cómo se trabaja: que el presupuesto coincida con lo que se cobra, que se cambien las piezas que se dicen y cómo se trata al cliente.</p><p>La insignia se mostraría en el perfil y en los rankings. Estaría pensada para traerle más clientes al taller que la tiene; es una hipótesis a validar.</p></div>
     </div>
    </div>
@@ -2273,7 +2273,7 @@ input[type="range"] { display:block; width:100%; min-width:0; margin:3px 0 0; mi
  <figure class="work-photo"><img src="assets/taller.jpg" width="1024" height="683" loading="lazy" alt="Un técnico levanta un auto con un crique para una reparación"></figure>
  <div class="shell work-grid">
   <div class="work-copy"><h2 id="work-title" data-reveal>Una reseña que solo existe si hubo trabajo</h2><p data-reveal>Del primer pedido a la confirmación: conductor y taller dejan registro del mismo servicio. Esa es la base de la reseña verificada que propone llave.</p><p class="small" style="margin-top:25px">Reparación de un auto, foto ilustrativa. No corresponde a un taller de llave.</p><figure class="work-detail" data-reveal><img src="assets/disco-freno.jpg" width="1920" height="1280" loading="lazy" alt="Detalle de un disco de freno"><figcaption>Detalle de freno, foto ilustrativa.</figcaption></figure></div>
-  <article class="paper saw work-ticket" data-reveal data-paper="0"><h3>Orden de trabajo · flujo propuesto</h3><p class="moment">Antes</p><div class="ticket-row"><span class="desc">Describe el problema</span><span class="dots" aria-hidden="true"></span><span class="amount">Conductor</span></div><div class="ticket-row"><span class="desc">Responden con presupuesto</span><span class="dots" aria-hidden="true"></span><span class="amount">Talleres compatibles</span></div><p class="moment">Durante</p><div class="ticket-row"><span class="desc">Compara precio, reputación y turno</span><span class="dots" aria-hidden="true"></span><span class="amount">Conductor</span></div><div class="ticket-row"><span class="desc">Chat y reserva</span><span class="dots" aria-hidden="true"></span><span class="amount">Ambos</span></div><p class="moment">Después</p><div class="ticket-row"><span class="desc">Marca el servicio como realizado</span><span class="dots" aria-hidden="true"></span><span class="amount">Taller</span></div><div class="ticket-row"><span class="desc">Confirma el servicio</span><span class="dots" aria-hidden="true"></span><span class="amount">Conductor</span></div><div class="inverted">Reseña verificada<span>→ atada a un trabajo real</span></div></article>
+  <article class="paper saw work-ticket" data-reveal data-paper="0"><h3>Orden de trabajo · flujo propuesto</h3><p class="moment">Antes</p><div class="ticket-row"><span class="desc">Describe el problema</span><span class="dots" aria-hidden="true"></span><span class="amount">Conductor</span></div><div class="ticket-row"><span class="desc">Responden con presupuesto</span><span class="dots" aria-hidden="true"></span><span class="amount">Talleres compatibles</span></div><p class="moment">Durante</p><div class="ticket-row"><span class="desc">Compara precio, reputación y turno</span><span class="dots" aria-hidden="true"></span><span class="amount">Conductor</span></div><div class="ticket-row"><span class="desc">Chat y reserva</span><span class="dots" aria-hidden="true"></span><span class="amount">Ambos</span></div><p class="moment">Después</p><div class="ticket-row"><span class="desc">Marca el servicio como realizado</span><span class="dots" aria-hidden="true"></span><span class="amount">Taller</span></div><div class="ticket-row"><span class="desc">Muestra la pieza vieja que cambió</span><span class="dots" aria-hidden="true"></span><span class="amount">Taller</span></div><div class="ticket-row"><span class="desc">Confirma el servicio</span><span class="dots" aria-hidden="true"></span><span class="amount">Conductor</span></div><div class="inverted">Reseña verificada<span>→ atada a un trabajo real</span></div></article>
  </div>
 </section>
 <section class="section model" id="modelo" aria-labelledby="model-title">
@@ -2317,7 +2317,7 @@ input[type="range"] { display:block; width:100%; min-width:0; margin:3px 0 0; mi
 <footer class="site-footer" id="footer">
  <div class="footer-top"><a class="brand" href="#arriba" aria-label="llave, volver al inicio"><img src="assets/logo.svg" width="38" height="38" alt="">llave</a><span>Quilmes, Buenos Aires</span><a href="mailto:misacastillo08@gmail.com">misacastillo08@gmail.com</a><a href="#arriba">Volver arriba ↑</a></div>
  <p class="footer-statement">Compará. Elegí. Confiá.</p>
- <div class="footer-bottom"><div class="source-credits"><p>Fuentes: AFAC, 2025 · parque automotor argentino; INDEC, Censo 2022 · población de Quilmes. Relevamiento propio: noviembre de 2026.</p><div class="image-credits"><a href="https://commons.wikimedia.org/w/index.php?curid=58218625" target="_blank" rel="noopener noreferrer">Calle de Bernal: Mbusin · CC BY-SA 4.0</a><a href="https://www.flickr.com/photos/26344495@N05/49967130491" target="_blank" rel="noopener noreferrer">Reparación: Ivan Radic · CC BY 2.0</a><a href="https://commons.wikimedia.org/w/index.php?curid=186975326" target="_blank" rel="noopener noreferrer">Disco de freno: Shixart1985 · CC BY 2.0</a></div></div><p class="copyright">© 2026 llave</p></div>
+ <div class="footer-bottom"><div class="source-credits"><p>Fuentes: AFAC, 2025 · parque automotor argentino; INDEC, Censo 2022 · población de Quilmes. Relevamiento propio: noviembre de 2026.</p><div class="image-credits"><a href="https://www.flickr.com/photos/26344495@N05/49967130491" target="_blank" rel="noopener noreferrer">Reparación: Ivan Radic · CC BY 2.0</a><a href="https://commons.wikimedia.org/w/index.php?curid=186975326" target="_blank" rel="noopener noreferrer">Disco de freno: Shixart1985 · CC BY 2.0</a></div></div><p class="copyright">© 2026 llave</p></div>
 </footer>
 <script src="assets/js/gsap.min.js"></script>
 <script src="assets/js/ScrollTrigger.min.js"></script>
