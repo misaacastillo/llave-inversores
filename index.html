@@ -37,10 +37,15 @@
 :root {
   --blue:#0B1F4D;
   --surface:#13296A;
-  --light:#1C3580;
+  --light:#13296A;
   --orange:#FF6A2B;
   --hover:#FF9A5C;
-  --paper:#F4F1EA;
+  --paper:#fff;
+  --app-bg:#F2F4F9;
+  --app-card:#FFF;
+  --app-ink:#0B1F4D;
+  --app-sub:#63708A;
+  --app-line:#E3E8F1;
   --white:#fff;
   --muted:rgba(255,255,255,.78);
   --gutter:clamp(20px,5vw,96px);
@@ -193,7 +198,7 @@ legend {
 .skip:focus {
   transform:translateY(0)
 }
-/* Glass is confined to navigation, the budget stub and UI inside phones. */
+/* Vidrio sutil: navegación y pantallas de la app, como en la referencia. */
 .glass {
   background:rgba(19,41,106,.9);
   -webkit-backdrop-filter:blur(24px) saturate(140%);
@@ -310,38 +315,12 @@ legend {
   min-height:710px;
   isolation:isolate
 }
-.budget-anchor {
-  position:relative;
-  z-index:3;
-  width:78%;
-  margin-top:30px
-}
 .paper {
   background:var(--paper);
   color:var(--blue)
 }
 .saw {
   clip-path:polygon(0 1%,2.5% 0,5% 1%,7.5% 0,10% 1%,12.5% 0,15% 1%,17.5% 0,20% 1%,22.5% 0,25% 1%,27.5% 0,30% 1%,32.5% 0,35% 1%,37.5% 0,40% 1%,42.5% 0,45% 1%,47.5% 0,50% 1%,52.5% 0,55% 1%,57.5% 0,60% 1%,62.5% 0,65% 1%,67.5% 0,70% 1%,72.5% 0,75% 1%,77.5% 0,80% 1%,82.5% 0,85% 1%,87.5% 0,90% 1%,92.5% 0,95% 1%,97.5% 0,100% 1%,100% 99%,97.5% 100%,95% 99%,92.5% 100%,90% 99%,87.5% 100%,85% 99%,82.5% 100%,80% 99%,77.5% 100%,75% 99%,72.5% 100%,70% 99%,67.5% 100%,65% 99%,62.5% 100%,60% 99%,57.5% 100%,55% 99%,52.5% 100%,50% 99%,47.5% 100%,45% 99%,42.5% 100%,40% 99%,37.5% 100%,35% 99%,32.5% 100%,30% 99%,27.5% 100%,25% 99%,22.5% 100%,20% 99%,17.5% 100%,15% 99%,12.5% 100%,10% 99%,7.5% 100%,5% 99%,2.5% 100%,0 99%)
-}
-.budget {
-  aspect-ratio:5/7;
-  padding:36px 28px 30px;
-  display:flex;
-  flex-direction:column;
-  position:relative;
-  transform-origin:top left
-}
-.letterhead {
-  font-size:var(--small);
-  font-weight:600;
-  max-width:28ch;
-  line-height:1.45
-}
-.budget-client {
-  margin-top:24px
-}
-.budget .rows {
-  margin-top:28px
 }
 .ticket-row {
   display:flex;
@@ -375,58 +354,9 @@ legend {
   gap:12px;
   font-weight:600
 }
-.budget .inverted {
-  margin-top:auto;
-  font-size:var(--heading);
-  letter-spacing:-.04em
-}
 .total-amount {
   color:var(--orange);
   white-space:nowrap
-}
-.budget-note {
-  margin-top:15px;
-  font-size:var(--small)
-}
-.stamp {
-  position:absolute;
-  left:22px;
-  top:66%;
-  z-index:4;
-  background:var(--orange);
-  color:var(--blue);
-  padding:12px 16px;
-  font-size:var(--heading);
-  font-weight:700;
-  letter-spacing:-.04em;
-  transform:rotate(-8deg);
-  white-space:nowrap
-}
-.hero-caption {
-  margin-top:17px;
-  max-width:35ch
-}
-.budget-stub {
-  position:fixed;
-  z-index:80;
-  left:var(--gutter);
-  bottom:22px;
-  width:200px;
-  padding:15px 16px;
-  border-radius:18px;
-  pointer-events:none;
-  font-size:var(--small);
-  line-height:1.3;
-  opacity:0;
-  visibility:hidden
-}
-.budget-stub b {
-  display:block;
-  font-weight:600
-}
-.budget-stub.is-visible {
-  opacity:1;
-  visibility:visible
 }
 /* The HTML/CSS iPhone reuses the reference's frame, island, glass bars and sheets. */
 .phone {
@@ -444,7 +374,7 @@ legend {
   height:100%;
   border-radius:47px;
   overflow:hidden;
-  background:var(--paper)
+  background:var(--app-bg)
 }
 .island {
   position:absolute;
@@ -505,7 +435,7 @@ legend {
   font-weight:600
 }
 .phone .ui-glass {
-  background:rgba(244,241,234,.88);
+  background:rgba(255,255,255,.88);
   -webkit-backdrop-filter:blur(18px) saturate(140%);
   backdrop-filter:blur(18px) saturate(140%)
 }
@@ -542,34 +472,6 @@ legend {
   fill:none;
   stroke:currentColor;
   stroke-width:2
-}
-.hero-phone {
-  position:absolute;
-  right:-4px;
-  top:0;
-  transform:rotate(4deg);
-  width:325px;
-  z-index:1
-}
-.hero-phone .app-body {
-  padding-top:42px
-}
-.hero-phone .app-row {
-  padding-block:16px
-}
-.hero-phone .app-price {
-  grid-row:2;
-  grid-column:1;
-  font-size:28px
-}
-.hero-phone .app-row small {
-  grid-row:3
-}
-.hero-phone .app-title {
-  max-width:10ch
-}
-.hero-phone .app-body {
-  padding-left:22px
 }
 .phone-note {
   margin-top:18px;
@@ -1355,12 +1257,6 @@ legend {
   .hero-art {
   min-height:800px
 }
-.hero-phone {
-  width:370px
-}
-.budget {
-  padding:45px 40px
-}
 .hero h1 {
   font-size:clamp(56px,4.5vw,120px)
 }
@@ -1408,12 +1304,6 @@ legend {
   max-width:100%;
   margin-inline:auto;
   min-height:790px
-}
-.budget-anchor {
-  width:76%
-}
-.hero-phone {
-  width:340px
 }
 .problem-top {
   grid-template-columns:minmax(0,1fr);
@@ -1585,49 +1475,6 @@ html {
   display:flex;
   flex-direction:column;
   gap:40px
-}
-.budget-anchor {
-  width:100%;
-  margin-top:0
-}
-.budget {
-  padding:30px 22px 26px;
-  min-height:600px
-}
-.budget-client {
-  margin-top:20px
-}
-.budget .rows {
-  margin-top:23px
-}
-.budget .inverted {
-  font-size:28px
-}
-.stamp {
-  font-size:32px;
-  top:65%;
-  left:14px;
-  padding:10px 14px
-}
-.hero-caption {
-  margin-top:12px
-}
-.hero-phone {
-  position:relative;
-  right:auto;
-  top:auto;
-  transform:none;
-  width:325px;
-  max-width:100%;
-  margin-inline:auto
-}
-.budget-stub {
-  left:20px;
-  bottom:16px;
-  width:120px;
-  padding:12px 10px;
-  font-size:14px;
-  border-radius:16px
 }
 .problem {
   padding-top:56px
@@ -1945,9 +1792,6 @@ html {
   animation:none!important;
   transition:none!important
 }
-.budget-stub {
-  transition:none
-}
 .bar {
   transform:none!important
 }
@@ -1960,10 +1804,208 @@ html {
 }
 .mobile-menu summary:hover,.segments label:hover { opacity:.82 }
 
-/* Sin scroll horizontal: recorta el iPhone y la foto del contacto */
+/* Fix previo de la página; QA v2 lo desactiva para medir desbordes reales. */
 html, body { overflow-x: clip; }
-.hero, .contact { overflow-x: clip; }
-@media(max-width:699px){ .budget{aspect-ratio:auto; width:100%; max-width:100%} .solution-panel{max-width:100%} }
+.contact { overflow-x: clip; }
+
+/* V2: componentes de referencia/presentacion.html, adaptados al ancho de cada iPhone. */
+.hero-grid > *, .market-grid > *, .network > *, .workshop-value > *,
+.model-grid > *, .workshop-comparison > *, .calculator-fields > * { min-width:0 }
+.brand-phrase, .footer-statement { color:#FF6A2B }
+.brand-phrase { font-size:clamp(32px,3.3vw,54px); font-weight:600; line-height:1.05; letter-spacing:-.045em; margin-top:30px }
+.hero-art { min-height:0; width:100%; margin:0 }
+.hero-phones { position:relative; height:740px; width:100%; isolation:isolate }
+[data-ui].phone { container-type:inline-size; padding:10px; border-radius:16.5% / 8%; background:var(--blue); box-shadow:0 0 0 2px rgba(255,255,255,.28), inset 0 0 0 5px var(--surface) }
+.phone .scr { border-radius:14.5% / 7%; background:var(--app-bg) }
+.phone .island { width:29.5cqi; height:8.5cqi; top:3.5cqi; background:var(--blue); border-radius:5cqi }
+.hero-phones .phone { position:absolute; width:min(63%,320px) }
+.hero-phone-front { left:3%; top:55px; z-index:2 }
+.hero-phone-back { right:5%; top:12px; transform:rotate(8deg); z-index:1 }
+.phone .app { position:absolute; inset:0; color:var(--app-ink); background:var(--app-bg); font-size:4cqi; line-height:1.35 }
+.phone .sb { position:absolute; top:4.5cqi; left:8.5cqi; right:7.5cqi; display:flex; justify-content:space-between; font-size:4cqi; font-weight:600 }
+.phone .app-brand { position:absolute; left:5cqi; right:5cqi; top:17cqi; display:flex; align-items:center; gap:2.4cqi; font-size:7cqi; font-weight:700; letter-spacing:-.04em }
+.phone .app-brand img { width:8cqi; height:8cqi }
+.phone .app-brand > span { margin-left:auto; color:var(--app-sub); font-size:3.8cqi; font-weight:500; letter-spacing:0 }
+.phone .search { position:absolute; left:4.5cqi; right:4.5cqi; top:30cqi; min-height:14cqi; padding:3cqi; border-radius:8cqi; display:flex; align-items:center; gap:2cqi; z-index:5; font-size:3.8cqi; font-weight:500 }
+.phone .search .icon { flex:none; width:5cqi; height:5cqi }
+.phone .preview-map { position:absolute; top:39cqi; left:0; right:0; height:68cqi; background:var(--app-line); overflow:hidden }
+.preview-map .streets { width:100%; height:100%; fill:none; stroke:var(--app-card); stroke-width:9 }
+.preview-map .streets .avenue { stroke-width:15 }
+.preview-map text { fill:var(--app-sub); stroke:none; font-size:14px; font-family:inherit }
+.phone .preview-pin { position:absolute; padding:1.5cqi 2.5cqi; background:var(--orange); color:var(--blue); font-size:3.6cqi; font-weight:700; border-radius:4cqi 4cqi 4cqi 0 }
+.preview-pin.pin-a { top:24cqi; left:12cqi }
+.preview-pin.pin-b { top:43cqi; right:10cqi }
+.preview-pin.pin-c { top:54cqi; left:25cqi }
+.phone .sheet { background:var(--app-bg); color:var(--app-ink); border-radius:7cqi 7cqi 0 0 }
+.phone .app > .sheet { position:absolute; top:100cqi; left:0; right:0; bottom:0; padding:4cqi 4cqi 0 }
+.phone .sheet h3 { font-size:5cqi; line-height:1.25 }
+.phone .app-filter { color:var(--app-sub); font-size:3.3cqi; margin-top:1.5cqi }
+.phone .res { background:var(--app-card); border-radius:4.5cqi; padding:3cqi; margin-top:2.3cqi; color:var(--app-ink) }
+.phone .app > .sheet .res { display:flex; align-items:center; gap:2.4cqi }
+.phone .res > div { min-width:0 }
+.phone .res b { display:block; font-size:4.2cqi; line-height:1.2 }
+.phone .res small { display:block; font-size:3.25cqi; line-height:1.4; color:var(--app-sub) }
+.phone .res strong { font-size:4.4cqi; margin-left:auto; white-space:nowrap; letter-spacing:-.035em }
+.phone .av { width:9cqi; height:9cqi; flex:none; border-radius:50%; background:var(--app-line); display:grid; place-items:center; font-size:3.5cqi; font-weight:700 }
+.stars { color:var(--orange); font-weight:600 }
+.stars .rating-star { display:inline-block; width:1em; height:1em; vertical-align:-.1em }
+.phone .stars { font-size:3.7cqi }
+.phone .app-example { font-size:3.1cqi; color:var(--app-sub); margin-top:2.8cqi }
+.phone .app .tab-bar { bottom:4cqi; left:3.5cqi; right:3.5cqi; border-radius:7cqi; padding:3cqi 2cqi; font-size:3.4cqi }
+.phone .chat-h { position:absolute; top:0; left:0; right:0; height:31cqi; padding:15cqi 4cqi 2cqi; display:flex; align-items:center; gap:3cqi; background:var(--app-card) }
+.phone .chat-h b { display:block; font-size:4.5cqi }
+.phone .chat-h small { font-size:3.5cqi; color:var(--app-sub) }
+.phone .msgs { position:absolute; top:35cqi; left:3.5cqi; right:3.5cqi; display:flex; flex-direction:column; gap:3cqi }
+.phone .me, .phone .th { max-width:79%; font-size:4.1cqi; padding:3cqi 3.5cqi; border-radius:4.5cqi }
+.phone .me { align-self:flex-end; color:var(--blue); background:var(--orange); border-bottom-right-radius:1.5cqi }
+.phone .th { align-self:flex-start; background:var(--app-card); border-bottom-left-radius:1.5cqi }
+.phone .th b { display:block; margin-bottom:2cqi }
+.phone .tsep { align-self:center; font-size:3.3cqi; color:var(--app-sub); text-align:center; padding:2cqi; background:var(--app-line); border-radius:2.5cqi }
+.phone .chat-compose { position:absolute; bottom:5cqi; left:4cqi; right:4cqi; padding:3.5cqi; border-radius:6cqi; color:var(--app-sub); font-size:3.8cqi }
+.hero-art .phone-note { margin:0 auto; text-align:center; max-width:none }
+/* Las pantallas existentes mantienen su contenido, con la paleta y las tarjetas de la referencia. */
+.phone .app-row { gap:4px 8px }
+.phone .app-row .rating-star { color:var(--orange); margin-right:4px }
+.phone .app-row b { font-size:15px }
+.phone .app-row small { font-size:12px; color:var(--app-sub) }
+.phone .app-row .app-price { font-size:15px }
+.phone .map { background:var(--app-line) }
+.phone .map .streets { stroke:var(--app-card) }
+.phone .map-sheet { padding:16px 12px }
+.solution .map { height:230px }
+.solution .map-sheet .app-title { font-size:24px; margin-bottom:10px }
+.solution .phone .app-body { padding-bottom:80px }
+.phone .map-sheet .app-row { padding:10px; margin-top:8px }
+.phone .map-pin { color:var(--orange); background:var(--app-card) }
+.phone .app-body.request-screen { padding-inline:16px }
+.phone .request-screen .app-row { padding:14px 12px }
+.phone .confirmation { border-radius:18px; margin-top:20px; padding:18px 14px }
+.phone .verified-review { background:var(--app-card); padding:16px; border-radius:18px }
+.phone .verified-review .app-caption { color:var(--app-sub) }
+/* Tesis del mercado e ilustración interactiva. */
+.market { background:var(--surface) }
+.hypothesis { color:var(--hover); font-size:var(--small); font-weight:500 }
+.market h2 { max-width:19ch; font-size:var(--display); margin-top:20px }
+.market-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); gap:7%; align-items:start; margin-top:52px }
+.market-copy p + p { margin-top:26px }
+[data-ui].price-experiment, [data-ui].workshop-calculator { color:var(--app-ink); background:var(--app-bg); border-radius:24px; padding:28px }
+.price-experiment h3 { font-size:22px; line-height:1.2; letter-spacing:-.025em }
+.experiment-job { color:var(--app-sub); font-size:15px; margin-top:10px }
+.workshop-comparison { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:24px }
+.workshop-card { padding:18px 14px; border-radius:18px; background:var(--app-card) }
+.workshop-card h4 { font-size:18px; margin:0 0 9px; font-weight:600 }
+.workshop-card .stars { font-size:15px; line-height:1.5 }
+.workshop-card .stars span { display:block; color:var(--app-sub); font-size:13px; font-weight:400 }
+.workshop-card .comparison-price { font-size:clamp(22px,2.3vw,34px); font-weight:600; letter-spacing:-.04em; margin-top:17px; white-space:nowrap }
+.workshop-card .comparison-price + p { font-size:13px; color:var(--app-sub); margin-top:4px }
+.slider-label { display:block; font-size:16px; font-weight:600; margin-top:24px }
+input[type="range"] { display:block; width:100%; min-width:0; margin:3px 0 0; min-height:48px; accent-color:var(--orange); cursor:pointer; touch-action:pan-y }
+.slider-limits, .choice-labels { display:flex; justify-content:space-between; gap:12px; font-size:13px; color:var(--app-sub) }
+.choice-labels { margin-top:24px; color:var(--app-ink); font-size:15px; font-weight:600 }
+.choice-labels output { display:block }
+.choice-labels > span:last-child { text-align:right }
+.choice-bar { display:flex; height:22px; border-radius:11px; overflow:hidden; margin-top:10px; background:var(--app-line) }
+.choice-bar span { display:block; height:100% }
+#choice-fixed-bar { background:var(--blue) }
+#choice-variable-bar { background:var(--orange) }
+.choice-summary { font-size:16px; font-weight:600; margin-top:18px; min-height:3em }
+#choice-explanation { color:var(--app-sub); margin-top:10px }
+.experiment-disclaimer { margin-top:18px; font-weight:600; font-size:15px }
+.network { margin-top:72px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:7%; align-items:center }
+.network-copy h3 { font-size:var(--heading); line-height:1.05; letter-spacing:-.04em; max-width:20ch }
+.network-copy p { margin-top:24px }
+.network-cycle { position:relative; min-width:0 }
+.network-cycle > svg { position:absolute; inset:0; width:100%; height:100%; overflow:visible }
+.network-cycle svg > path { stroke:var(--orange); stroke-width:.7; fill:none; marker-end:url(#cycle-arrow) }
+#cycle-arrow path { fill:var(--orange) }
+.network-steps { list-style:none; padding:0; margin:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-rows:repeat(2,minmax(100px,1fr)); gap:70px 65px; text-align:center; align-items:center; font-size:22px; font-weight:600; letter-spacing:-.025em; line-height:1.2 }
+.network-steps li:nth-child(3) { grid-column:2; grid-row:2 }
+.network-steps li:nth-child(4) { grid-column:1; grid-row:2 }
+/* Modelo USD y calculadora de facturación. */
+.model-number { font-size:clamp(52px,6.2vw,110px); white-space:normal; line-height:1; letter-spacing:-.055em }
+.model-number > [data-count] { white-space:nowrap }
+.model-period { display:block; font-size:.46em; margin-top:8px; letter-spacing:-.035em }
+.model-receipt .ticket-row { flex-wrap:wrap }
+.model-receipt .ticket-row .amount { margin-left:auto }
+.model-receipt .inverted { flex-wrap:wrap }
+.workshop-value { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); align-items:start; gap:8%; margin-top:90px }
+.workshop-value-copy h3 { font-size:var(--heading); line-height:1.1; letter-spacing:-.04em }
+.workshop-value blockquote { margin-top:30px; font-size:25px; line-height:1.3; letter-spacing:-.025em }
+.workshop-value cite { display:block; font-size:15px; font-style:normal; letter-spacing:0; margin-top:18px; color:var(--muted) }
+.workshop-value-copy > p { margin-top:28px }
+.workshop-calculator h3 { font-size:22px; line-height:1.2; letter-spacing:-.025em; margin-bottom:12px }
+.calculator-fields { display:grid; grid-template-columns:minmax(0,1fr); gap:18px; margin-top:24px }
+.calculator-fields label { font-size:15px; font-weight:500; display:block }
+.calculator-fields .small { color:var(--app-sub); font-weight:400; font-size:13px; margin-top:4px }
+.calculator-fields input { width:100%; min-width:0; display:block; background:var(--app-card); color:var(--app-ink); border:1px solid var(--app-line); border-radius:12px; min-height:48px; padding:10px 14px; margin-top:8px }
+#calculator-status:not(:empty) { margin-top:16px; font-weight:600 }
+.calculator-results { margin-top:26px; display:grid; gap:18px }
+.calculator-results > div { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:12px; align-items:baseline }
+.calculator-results dt { font-size:15px; color:var(--app-sub) }
+.calculator-results dd { font-size:22px; font-weight:600; letter-spacing:-.03em }
+.recovery { padding:16px; margin-top:24px; background:var(--blue); color:var(--white); border-radius:14px; font-size:17px; font-weight:500 }
+.calculator-disclaimer { margin-top:16px; color:var(--app-sub) }
+.contact { background:var(--orange); color:var(--blue) }
+.contact-copy .brand-phrase { display:inline-block; max-width:100%; background:var(--blue); padding:16px; margin:0 0 32px; font-size:clamp(32px,3.3vw,52px) }
+.contact .contact-dialog { color:var(--blue) }
+.contact .contact-dialog :focus-visible { outline-color:var(--orange) }
+@media(min-width:1600px) {
+ .hero-phones { height:820px }
+ .hero-phones .phone { width:min(63%,360px) }
+}
+@media(min-width:1100px) and (max-width:1279px) {
+ .hero h1 { font-size:4.4vw }
+ .hero-phones { height:680px }
+ .hero-phones .phone { width:min(63%,285px) }
+}
+@media(max-width:1099px) {
+ .hero-art { width:min(580px,100%); margin-inline:auto }
+ .hero-phones { height:740px }
+ .market-grid, .network, .workshop-value { gap:36px }
+ .workshop-value { grid-template-columns:minmax(0,1fr) }
+ .workshop-value-copy { max-width:65ch }
+ .workshop-calculator { max-width:650px; width:100% }
+ .workshop-comparison { gap:8px }
+ .workshop-card { padding:16px 10px }
+ [data-ui].price-experiment { padding:24px }
+ .market-grid { grid-template-columns:minmax(0,1fr) }
+ .price-experiment { max-width:650px; width:100% }
+ .workshop-card .comparison-price { font-size:32px }
+ .model-number { font-size:clamp(48px,6.4vw,70px) }
+ .network-steps { font-size:20px; gap:70px 50px }
+}
+@media(max-width:699px) {
+ .hero { padding-top:112px }
+ .hero h1 { font-size:11.8vw }
+ .hero-lead { font-size:18px; margin-top:26px }
+ .hero-copy .brand-phrase { font-size:32px; margin-top:24px }
+ .hero-grid { gap:34px }
+ .hero-art { display:block; width:100% }
+ .hero-phones { height:min(calc((100vw - 40px) * 1.68 + 44px),680px) }
+ .hero-phones .phone { width:76%; max-width:300px; padding:8px }
+ .hero-phone-front { left:3%; top:48px }
+ .hero-phones .hero-phone-back { width:66%; top:14px; right:5%; transform:rotate(7deg) }
+ .hero-art .phone-note { font-size:13px; margin-top:14px }
+ .market h2 { font-size:44px; max-width:15ch; margin-top:18px }
+ .market-grid { margin-top:32px; gap:32px }
+ .market-copy p + p { margin-top:22px }
+ [data-ui].price-experiment, [data-ui].workshop-calculator { padding:22px 18px; border-radius:22px }
+ .workshop-comparison { gap:10px; margin-top:20px }
+ .workshop-card { padding:16px 11px }
+ .workshop-card .comparison-price { font-size:26px }
+ .workshop-card .stars span { font-size:12px }
+ .network { grid-template-columns:minmax(0,1fr); margin-top:48px; gap:36px }
+ .network-copy h3 { font-size:32px }
+ .network-steps { font-size:18px; gap:58px 55px; grid-template-rows:repeat(2,minmax(90px,1fr)) }
+ .model-number { font-size:clamp(48px,14vw,75px) }
+ .model-period { display:inline; font-size:.5em; margin-left:4px }
+ .workshop-value { margin-top:56px; gap:32px }
+ .workshop-value blockquote { font-size:24px }
+ .calculator-results > div { grid-template-columns:minmax(0,1fr) }
+ .contact-copy .brand-phrase { font-size:32px }
+ .contact .contact-copy h2 { margin-top:0 }
+}
+
 </style>
 </head>
 <body>
@@ -1981,39 +2023,42 @@ html, body { overflow-x: clip; }
   <div class="hero-copy">
    <h1 id="hero-title"><span>Presupuestos que</span><span>podés verificar.</span></h1>
    <p class="hero-lead">llave conecta a conductores con talleres verificados de Quilmes: presupuestos comparables y reseñas atadas a un trabajo confirmado.</p>
+   <p class="brand-phrase">Compará. Elegí. Confiá.</p>
    <div class="hero-actions"><a class="button" href="#piloto">Sumate al piloto</a><a class="text-link" href="#evidencia">Ver la evidencia ↓</a></div>
   </div>
-  <div class="hero-art">
-   <figure class="budget-anchor">
-    <div class="paper saw budget" id="presupuesto">
-     <p class="letterhead">Taller Avenida · Presupuesto N.º 0480 · Quilmes</p>
-     <p class="budget-client small">Cliente: Lucas<br>Vehículo: Gol 2014</p>
-     <div class="rows">
-      <div class="ticket-row"><span class="desc">Pastillas de freno</span><span class="dots" aria-hidden="true"></span><span class="amount">$85.000</span></div>
-      <div class="ticket-row"><span class="desc">Discos de freno</span><span class="dots" aria-hidden="true"></span><span class="amount">$160.000</span></div>
-      <div class="ticket-row"><span class="desc">Amortiguadores delanteros</span><span class="dots" aria-hidden="true"></span><span class="amount">$200.000</span></div>
-      <div class="ticket-row"><span class="desc">Mano de obra</span><span class="dots" aria-hidden="true"></span><span class="amount">$35.000</span></div>
-     </div>
-     <div class="inverted"><span>TOTAL</span><span class="total-amount">$480.000</span></div>
-     <p class="budget-note">Escenario ilustrativo · montos hipotéticos.</p>
-     <div class="stamp">¿Era necesario?</div>
+  <figure class="hero-art">
+   <div class="hero-phones">
+    <div class="phone hero-phone-back" data-ui aria-label="Prototipo ilustrativo del chat con un taller">
+     <div class="scr"><div class="island" aria-hidden="true"></div><div class="app">
+      <div class="sb" aria-hidden="true"><span>9:41</span><span>▰</span></div>
+      <div class="chat-h"><span class="av">MB</span><div><b>Mecánica Bernal</b><small>Chat del trabajo</small></div></div>
+      <div class="msgs"><p class="tsep">Cambio de embrague · 208</p><p class="me">¿El precio incluye mano de obra?</p><p class="th">Sí. Antes de reservar, podés comparar qué incluye cada presupuesto.</p><p class="me">Perfecto, quiero coordinar un turno.</p><div class="th"><b>Trabajo confirmado</b><p>La reseña queda atada al servicio, confirmado por ambas partes.</p></div><p class="tsep">Ejemplo del flujo propuesto</p></div>
+      <div class="chat-compose ui-glass">Escribí un mensaje…</div>
+     </div></div>
     </div>
-    <figcaption class="hero-caption dim">Lucas es un personaje ilustrativo. Taller Avenida es un nombre ficticio.</figcaption>
-   </figure>
-   <div class="phone hero-phone" data-ui aria-label="Prototipo: tres presupuestos de ejemplo para pastillas de freno">
-    <div class="scr"><div class="island" aria-hidden="true"></div><div class="statusbar" aria-hidden="true"><span>9:41</span><span class="battery"></span></div>
-     <div class="app-body"><p class="app-title">Compará con llave</p><p class="small">Pastillas de freno<br>Precios de ejemplo · Hipótesis</p>
-      <div class="app-row"><b>Frenos Sur</b><span class="app-price">$85.000</span><small><svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,8 · 23 reseñas verificadas</small></div>
-      <div class="app-row"><b>Mecánica Bernal</b><span class="app-price">$92.000</span><small><svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,5 · 17 reseñas verificadas</small></div>
-      <div class="app-row"><b>Taller del Sur</b><span class="app-price">$98.000</span><small><svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,7 · 11 reseñas verificadas</small></div>
-      <p class="app-caption">Prototipo ilustrativo</p>
-     </div><div class="tab-bar ui-glass" aria-hidden="true"><span><svg class="icon"><use href="assets/icons.svg#i-search"/></svg>Buscar</span><span><svg class="icon"><use href="assets/icons.svg#i-file-text"/></svg>Presupuestos</span></div>
+    <div class="phone hero-phone-front" data-ui aria-label="Prototipo ilustrativo: buscar talleres y comparar precios de embrague en Quilmes">
+     <div class="scr"><div class="island" aria-hidden="true"></div><div class="app">
+      <div class="sb" aria-hidden="true"><span>9:41</span><span>▰</span></div>
+      <div class="app-brand"><img src="assets/logo.svg" width="28" height="28" alt="">llave<span>Quilmes</span></div>
+      <div class="search ui-glass"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-search"/></svg><span>Cambio de embrague · Peugeot 208</span></div>
+      <div class="preview-map" aria-label="Mapa esquemático de Quilmes">
+       <svg class="streets" viewBox="0 0 360 240" aria-hidden="true"><path d="M-20 45H380M-20 110H380M-20 175H380M45-10V250M120-10V250M195-10V250M270-10V250M345-10V250"/><path class="avenue" d="M-20 230 380 10"/><text x="135" y="95">Quilmes</text><text x="22" y="155">Bernal</text></svg>
+       <span class="preview-pin pin-a">$180 mil</span><span class="preview-pin pin-b">$195 mil</span><span class="preview-pin pin-c">$210 mil</span>
+      </div>
+      <div class="sheet"><h3>Precios publicados</h3><p class="app-filter">Mismo trabajo · Quilmes y alrededores</p>
+       <div class="res"><span class="av">MB</span><div><b>Mecánica Bernal</b><span class="stars"><svg class="rating-star" aria-hidden="true"><use href="assets/icons.svg#i-star"/></svg> 4,7</span><small>23 reseñas verificadas</small></div><strong>$180.000</strong></div>
+       <div class="res"><span class="av">TS</span><div><b>Taller del Sur</b><span class="stars"><svg class="rating-star" aria-hidden="true"><use href="assets/icons.svg#i-star"/></svg> 4,7</span><small>23 reseñas verificadas</small></div><strong>$195.000</strong></div>
+       <div class="res"><span class="av">TA</span><div><b>Taller Avenida</b><span class="stars"><svg class="rating-star" aria-hidden="true"><use href="assets/icons.svg#i-star"/></svg> 4,8</span><small>31 reseñas verificadas</small></div><strong>$210.000</strong></div>
+       <p class="app-example">Hipótesis · talleres y valores de ejemplo</p>
+      </div>
+      <div class="tab-bar ui-glass" aria-hidden="true"><span>Buscar</span><span>Presupuestos</span><span>Chat</span></div>
+     </div></div>
     </div>
    </div>
-  </div>
+   <figcaption class="phone-note dim">Prototipo ilustrativo · precios de ejemplo</figcaption>
+  </figure>
  </div>
 </section>
-<aside class="budget-stub glass" aria-hidden="true"><span id="stub-label">Presupuesto de Lucas</span><b id="stub-total">$480.000</b></aside>
 <section class="section problem" id="problema" aria-labelledby="problem-title">
  <div class="shell">
   <div class="problem-top">
@@ -2066,12 +2111,12 @@ html, body { overflow-x: clip; }
    <div class="solution-panel" id="pantalla-buscar" aria-labelledby="tab-buscar">
     <div class="phone" data-ui><div class="scr"><div class="island" aria-hidden="true"></div><div class="statusbar" aria-hidden="true"><span>9:41</span><span class="battery"></span></div><div class="app-body">
      <div class="map"><svg class="streets" viewBox="0 0 330 280" preserveAspectRatio="none" aria-hidden="true"><path d="M-20 80 350 35M-20 170 350 125M-20 260 350 215M65-20 110 310M190-20 235 310M290-20 325 310"/></svg><div class="map-label ui-glass">Frenos · a menos de 3 km · <svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,5+</div><span class="map-pin p1"><svg class="icon"><use href="assets/icons.svg#i-wrench"/></svg></span><span class="map-pin p2"><svg class="icon"><use href="assets/icons.svg#i-wrench"/></svg></span><span class="map-pin p3"><svg class="icon"><use href="assets/icons.svg#i-wrench"/></svg></span></div>
-     <div class="map-sheet ui-glass"><p class="app-title">Talleres verificados</p><div class="app-row"><b>Frenos Sur</b><span><svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,8</span><small>23 reseñas verificadas</small></div><div class="app-row"><b>Mecánica Bernal</b><span><svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,5</span><small>17 reseñas verificadas</small></div><div class="app-row"><b>Taller del Sur</b><span><svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,7</span><small>11 reseñas verificadas</small></div></div>
+     <div class="map-sheet sheet ui-glass"><p class="app-title">Talleres verificados</p><div class="app-row res"><b>Frenos Sur</b><span><svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,8</span><small>23 reseñas verificadas</small></div><div class="app-row res"><b>Mecánica Bernal</b><span><svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,5</span><small>17 reseñas verificadas</small></div><div class="app-row res"><b>Taller del Sur</b><span><svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,7</span><small>11 reseñas verificadas</small></div></div>
     </div><div class="tab-bar ui-glass" aria-hidden="true"><span><svg class="icon"><use href="assets/icons.svg#i-search"/></svg>Buscar</span><span><svg class="icon"><use href="assets/icons.svg#i-file-text"/></svg>Presupuestos</span></div></div></div>
     <p class="phone-note small">Prototipo ilustrativo</p>
    </div>
    <div class="solution-panel" id="pantalla-pedir" aria-labelledby="tab-pedir">
-    <div class="phone" data-ui><div class="scr"><div class="island" aria-hidden="true"></div><div class="statusbar" aria-hidden="true"><span>9:41</span><span class="battery"></span></div><div class="app-body request-screen"><p class="app-title">Un pedido.<br>Tres presupuestos.</p><p class="request-description">Necesito cambiar las pastillas de freno de mi Gol 2014.</p><p class="small">Mismo trabajo · Precios de ejemplo<br>Hipótesis</p><div class="app-row"><b>Frenos Sur</b><span class="app-price">$85.000</span><small><svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,8 · 23 reseñas verificadas</small></div><div class="app-row"><b>Mecánica Bernal</b><span class="app-price">$92.000</span><small><svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,5 · 17 reseñas verificadas</small></div><div class="app-row"><b>Taller del Sur</b><span class="app-price">$98.000</span><small><svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,7 · 11 reseñas verificadas</small></div></div><div class="tab-bar ui-glass" aria-hidden="true"><span><svg class="icon"><use href="assets/icons.svg#i-message-circle"/></svg>Chat</span><span><svg class="icon"><use href="assets/icons.svg#i-calendar-check"/></svg>Reserva</span></div></div></div><p class="phone-note small">Prototipo ilustrativo</p>
+    <div class="phone" data-ui><div class="scr"><div class="island" aria-hidden="true"></div><div class="statusbar" aria-hidden="true"><span>9:41</span><span class="battery"></span></div><div class="app-body request-screen"><p class="app-title">Un pedido.<br>Tres presupuestos.</p><p class="request-description">Necesito cambiar las pastillas de freno de mi Gol 2014.</p><p class="small">Mismo trabajo · Precios de ejemplo<br>Hipótesis</p><div class="app-row res"><b>Frenos Sur</b><span class="app-price">$85.000</span><small><svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,8 · 23 reseñas verificadas</small></div><div class="app-row res"><b>Mecánica Bernal</b><span class="app-price">$92.000</span><small><svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,5 · 17 reseñas verificadas</small></div><div class="app-row res"><b>Taller del Sur</b><span class="app-price">$98.000</span><small><svg class="rating-star" aria-label="Estrellas"><use href="assets/icons.svg#i-star"/></svg>4,7 · 11 reseñas verificadas</small></div></div><div class="tab-bar ui-glass" aria-hidden="true"><span><svg class="icon"><use href="assets/icons.svg#i-message-circle"/></svg>Chat</span><span><svg class="icon"><use href="assets/icons.svg#i-calendar-check"/></svg>Reserva</span></div></div></div><p class="phone-note small">Prototipo ilustrativo</p>
    </div>
    <div class="solution-panel" id="pantalla-resena" aria-labelledby="tab-resena">
     <div class="phone" data-ui><div class="scr"><div class="island" aria-hidden="true"></div><div class="statusbar" aria-hidden="true"><span>9:41</span><span class="battery"></span></div><div class="app-body"><p class="app-title">¿Se hizo<br>el trabajo?</p><p class="small">Pastillas de freno · Frenos Sur</p><div class="confirmation"><svg class="icon"><use href="assets/icons.svg#i-shield-check"/></svg><strong>Servicio confirmado</strong><div class="confirm-row"><svg class="icon"><use href="assets/icons.svg#i-check"/></svg>Taller: realizado</div><div class="confirm-row"><svg class="icon"><use href="assets/icons.svg#i-check"/></svg>Conductor: confirmado</div></div><div class="verified-review"><strong>Reseña verificada</strong><p>Atada a este trabajo, confirmado por ambas partes.</p><p class="app-caption">Ejemplo del flujo de verificación.</p></div></div><div class="tab-bar ui-glass" aria-hidden="true"><span><svg class="icon"><use href="assets/icons.svg#i-badge-check"/></svg>Mi trabajo</span><span><svg class="icon"><use href="assets/icons.svg#i-star"/></svg>Mi reseña</span></div></div></div><p class="phone-note small">Prototipo ilustrativo</p>
@@ -2085,6 +2130,43 @@ html, body { overflow-x: clip; }
   </div>
  </div>
 </section>
+<section class="section market" id="mercado" aria-labelledby="market-title">
+ <div class="shell">
+  <p class="hypothesis" data-reveal>Hipótesis de mercado · a validar en el piloto</p>
+  <h2 id="market-title" data-reveal>Cuando los precios se ven, se ordenan.</h2>
+  <div class="market-grid">
+   <div class="market-copy" data-reveal>
+    <p>Hoy cada taller fija su precio y el conductor no tiene dónde compararlo. La propuesta de llave es que cada taller publique cuánto cobra por el mismo trabajo.</p>
+    <p>La hipótesis: con el mismo trabajo y las mismas valoraciones, la gente elige el mejor precio. Como en Mercado Libre: el mismo producto, con la misma reputación, compite por precio.</p>
+    <p>Si funciona, los talleres más caros tendrían que bajar o justificar su precio con mejores valoraciones. Los precios de cada trabajo tenderían a estandarizarse por zona, y el taller honesto ganaría clientes.</p>
+   </div>
+   <div class="price-experiment" data-ui data-reveal>
+    <h3>El mismo trabajo. La misma reputación.</h3>
+    <p class="experiment-job">Cambio de embrague · 208</p>
+    <div class="workshop-comparison">
+     <article class="workshop-card"><h4>Taller A</h4><p class="stars"><svg class="rating-star" aria-hidden="true"><use href="assets/icons.svg#i-star"/></svg> 4,7 <span>· 23 reseñas verificadas</span></p><p class="comparison-price">$180.000</p><p>Precio fijo · ARS</p></article>
+     <article class="workshop-card"><h4>Taller B</h4><p class="stars"><svg class="rating-star" aria-hidden="true"><use href="assets/icons.svg#i-star"/></svg> 4,7 <span>· 23 reseñas verificadas</span></p><p class="comparison-price"><output id="market-price-value" for="market-price">$210.000</output></p><p>Precio editable · ARS</p></article>
+    </div>
+    <label class="slider-label" for="market-price">Mové el precio del Taller B</label>
+    <input id="market-price" type="range" min="150000" max="260000" step="1000" value="210000" aria-describedby="choice-explanation market-disclaimer" disabled>
+    <div class="slider-limits"><span>$150.000</span><span>$260.000</span></div>
+    <div class="choice-labels"><span>Taller A <output id="choice-fixed" for="market-price">88 %</output></span><span>Taller B <output id="choice-variable" for="market-price">12 %</output></span></div>
+    <div class="choice-bar" aria-hidden="true"><span id="choice-fixed-bar" style="width:88%"></span><span id="choice-variable-bar" style="width:12%"></span></div>
+    <p id="choice-summary" class="choice-summary" aria-live="polite">En esta ilustración, la mayoría elegiría el Taller A.</p>
+    <p id="choice-explanation" class="small">Ilustración, no dato: una curva logística reparte elecciones según la diferencia de precio. A igual precio, 50/50; al bajar uno, más elecciones irían hacia ese taller. La sensibilidad elegida es un supuesto, sin datos del piloto.</p>
+    <p id="market-disclaimer" class="experiment-disclaimer">Ilustración del mecanismo. Hipótesis a medir en el piloto.</p>
+    <noscript><p class="small">Comparación estática. Activá JavaScript para mover el precio.</p></noscript>
+   </div>
+  </div>
+  <div class="network" data-reveal>
+   <div class="network-copy"><h3>La necesidad de estar, para los dos lados.</h3><p>La hipótesis de efecto de red: el conductor volvería a llave cada vez que necesita un taller porque sería el único lugar donde puede comparar. Y, si los conductores están ahí, el taller que no está en llave se volvería invisible.</p><p class="hypothesis">Es una hipótesis de mercado; el piloto tiene que validarla.</p></div>
+   <div class="network-cycle" role="img" aria-label="Ciclo hipotético: más conductores, más talleres, más precios y reseñas, más conductores que vuelven">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><defs><marker id="cycle-arrow" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0 0 5 2.5 0 5"/></marker></defs><path d="M42 23H58"/><path d="M77 40V59"/><path d="M58 77H42"/><path d="M23 59V40"/></svg>
+    <ol class="network-steps"><li>Más conductores</li><li>Más talleres</li><li>Más precios<br>y reseñas</li><li>Más conductores<br>que vuelven</li></ol>
+   </div>
+  </div>
+ </div>
+</section>
 <section class="section work-section" id="funcionamiento" aria-labelledby="work-title">
  <figure class="work-photo"><img src="assets/taller.jpg" width="1024" height="683" loading="lazy" alt="Un técnico levanta un auto con un crique para una reparación"></figure>
  <div class="shell work-grid">
@@ -2093,15 +2175,27 @@ html, body { overflow-x: clip; }
  </div>
 </section>
 <section class="section model" id="modelo" aria-labelledby="model-title">
- <div class="shell model-grid">
-  <div class="model-copy"><h2 id="model-title" data-reveal>Un escenario para entender el modelo</h2><p data-reveal>Gratis para conductores. Los talleres pagan una suscripción fija, sin comisión por trabajo.</p><p class="small" data-reveal>Hipótesis de modelo en validación.</p><figure class="model-total" data-reveal><p class="model-number"><span data-count="1.9" data-prefix="$" data-suffix=" M">$1,9 M</span></p><figcaption>facturación bruta mensual · escenario ilustrativo, no proyección</figcaption></figure></div>
-  <article class="paper saw model-receipt" data-reveal data-paper="1.5"><p class="receipt-title">Recibo · Escenario ilustrativo</p><div class="receipt-group"><strong>Talleres</strong><div class="ticket-row"><span>Suscripciones</span><span class="dots" aria-hidden="true"></span><span class="amount">50 × $35.000</span></div><p class="receipt-calculation">$1.750.000</p></div><div class="receipt-group"><strong>Publicidad · por mes</strong><div class="ticket-row"><span>Anunciantes</span><span class="dots" aria-hidden="true"></span><span class="amount">10 × $15.000</span></div><p class="receipt-calculation">$150.000</p></div><div class="receipt-group"><strong>Conductores</strong><div class="ticket-row"><span>Uso de la app</span><span class="dots" aria-hidden="true"></span><span class="amount">$0</span></div></div><div class="inverted"><span>TOTAL MENSUAL</span><span class="total-amount">$1.900.000</span></div><p class="receipt-note">Montos hipotéticos en validación con talleres.</p></article>
+ <div class="shell">
+  <div class="model-grid">
+   <div class="model-copy"><h2 id="model-title" data-reveal>Un escenario para entender el modelo</h2><p data-reveal>Gratis para conductores. Los talleres pagan una suscripción fija de USD 50 por mes, con 30 días de prueba y sin comisión por trabajo.</p><p class="small" data-reveal>Hipótesis de modelo y de precio en validación. Espacio destacado, marcado como “Patrocinado”: USD 20 por mes (hipótesis).</p><figure class="model-total" data-reveal><p class="model-number">USD <span data-count="2700" data-decimals="0">2.700</span><span class="model-period">/mes</span></p><figcaption>facturación bruta mensual · escenario ilustrativo, hipótesis, no proyección<br>≈ USD 32.400 por año</figcaption></figure></div>
+   <article class="paper saw model-receipt" data-reveal data-paper="1.5"><p class="receipt-title">Escenario ilustrativo · hipótesis, no proyección</p><div class="receipt-group"><strong>Talleres</strong><div class="ticket-row"><span>Suscripciones</span><span class="dots" aria-hidden="true"></span><span class="amount">50 × USD 50</span></div><p class="receipt-calculation">USD 2.500</p></div><div class="receipt-group"><strong>Publicidad · por mes</strong><div class="ticket-row"><span>Espacios patrocinados</span><span class="dots" aria-hidden="true"></span><span class="amount">10 × USD 20</span></div><p class="receipt-calculation">USD 200</p></div><div class="receipt-group"><strong>Conductores</strong><div class="ticket-row"><span>Uso de la app</span><span class="dots" aria-hidden="true"></span><span class="amount">Gratis</span></div></div><div class="inverted"><span>TOTAL MENSUAL</span><span class="total-amount">USD 2.700</span></div><p class="receipt-note">Montos hipotéticos en validación con talleres.</p></article>
+  </div>
+  <div class="workshop-value">
+   <div class="workshop-value-copy" data-reveal><h3>¿Le conviene al taller?</h3><blockquote>“Un cambio de embrague en un Peugeot 208 me costó $180.000.”<cite>Misael Castillo · caso real del fundador</cite></blockquote><p>La hipótesis: un taller trabaja casi todos los días. Con los supuestos de ejemplo, con que llave le traiga <strong>un solo cliente con un trabajo así en el mes</strong>, ya recupera la suscripción en facturación. Los siguientes clientes suman facturación; la ganancia depende de sus costos.</p></div>
+   <div class="workshop-calculator" data-ui data-reveal>
+    <h3>Hacé la cuenta para tu taller</h3><p class="small">Hipótesis de suscripción: USD 50 por mes.</p>
+    <div class="calculator-fields"><label for="avg-job">Precio promedio de un trabajo (ARS)<input id="avg-job" type="number" inputmode="decimal" min="1" step="any" value="180000" disabled></label><label for="monthly-clients">Clientes por mes que llegan por llave<input id="monthly-clients" type="number" inputmode="numeric" min="0" step="1" value="3" disabled></label><label for="exchange-rate">Tipo de cambio de referencia (ARS por USD)<span class="small">Supuesto editable · no es una cotización</span><input id="exchange-rate" type="number" inputmode="decimal" min="1" step="any" value="1450" disabled></label></div>
+    <p id="calculator-status" class="small" role="status"></p>
+    <dl class="calculator-results" aria-live="polite"><div><dt>Costo de la suscripción en ARS</dt><dd><output id="subscription-ars" for="exchange-rate">$72.500</output></dd></div><div><dt>Facturación que trae llave en el mes</dt><dd><output id="monthly-revenue" for="avg-job monthly-clients">$540.000</output></dd></div></dl>
+    <p class="recovery"><output id="recovery-count" for="avg-job exchange-rate">Con 1 cliente recuperás la suscripción en facturación.</output></p><p class="small calculator-disclaimer">Calcula facturación, no margen. Valores de ejemplo.</p><noscript><p class="small">Valores estáticos. Activá JavaScript para recalcular.</p></noscript>
+   </div>
+  </div>
  </div>
 </section>
 <section class="section pricing" id="precios" aria-labelledby="pricing-title">
  <div class="shell">
   <div class="pricing-grid"><h2 id="pricing-title" data-reveal>Qué cobra llave y quién más está</h2>
-   <div class="price-menu" data-reveal><h3>Para conductores</h3><div class="ticket-row"><span class="desc">Buscar, comparar y reservar</span><span class="dots" aria-hidden="true"></span><span class="amount">Gratis</span></div><h3>Para talleres (hipótesis)</h3><div class="ticket-row"><span class="desc">Prueba 30 días</span><span class="dots" aria-hidden="true"></span><span class="amount">$0</span></div><div class="ticket-row"><span class="desc">Suscripción mensual</span><span class="dots" aria-hidden="true"></span><span class="amount">$35.000</span></div><div class="ticket-row"><span class="desc">Publicidad destacada, marcada “Patrocinado”</span><span class="dots" aria-hidden="true"></span><span class="amount">$15.000<br><small>por mes</small></span></div></div>
+   <div class="price-menu" data-reveal><h3>Para conductores</h3><div class="ticket-row"><span class="desc">Buscar, comparar y reservar</span><span class="dots" aria-hidden="true"></span><span class="amount">Gratis</span></div><h3>Para talleres (hipótesis)</h3><div class="ticket-row"><span class="desc">Prueba 30 días</span><span class="dots" aria-hidden="true"></span><span class="amount">Gratis</span></div><div class="ticket-row"><span class="desc">Suscripción mensual</span><span class="dots" aria-hidden="true"></span><span class="amount">USD 50</span></div><div class="ticket-row"><span class="desc">Publicidad destacada, marcada “Patrocinado”</span><span class="dots" aria-hidden="true"></span><span class="amount">USD 20<br><small>por mes</small></span></div></div>
    <div class="price-menu" data-reveal><h3>Lo que ya existe</h3><dl><div class="competitor-row"><dt>Google Maps</dt><dd>encontrar talleres, sin presupuestos comparables</dd></div><div class="competitor-row"><dt>Bosch Car Service</dt><dd>red de talleres de una marca</dd></div><div class="competitor-row"><dt>Rutiox</dt><dd>lo más parecido en Argentina</dd></div><div class="competitor-row"><dt>TallerOS y mecapp</dt><dd>gestión del taller</dd></div><div class="competitor-row"><dt>ClickMechanic</dt><dd>presupuestos online (Reino Unido)</dd></div></dl></div>
   </div><p class="menu-close" data-reveal>Nuestra apuesta no es inventar funciones: es juntarlas en una experiencia local con presupuestos comparables, reseñas verificadas y clientes medibles para el taller.</p>
  </div>
@@ -2113,13 +2207,13 @@ html, body { overflow-x: clip; }
 </section>
 <section class="contact" id="piloto" aria-labelledby="contact-title">
  <div class="shell contact-grid">
-  <div class="contact-copy"><h2 id="contact-title" data-reveal>Sumate al piloto.</h2><p data-reveal>Dejanos tu contacto y te mandamos el plan del piloto en Quilmes.</p></div>
+  <div class="contact-copy"><p class="brand-phrase">Compará. Elegí. Confiá.</p><h2 id="contact-title" data-reveal>Sumate al piloto.</h2><p data-reveal>Dejanos tu contacto y te mandamos el plan del piloto en Quilmes.</p></div>
   <div class="contact-dialog paper" data-ui data-reveal><h3>Quiero saber más</h3><form id="pilot-form" action="mailto:misacastillo08@gmail.com" method="get" enctype="text/plain"><label for="nombre">Tu nombre</label><input id="nombre" name="nombre" type="text" autocomplete="name" maxlength="120" required><fieldset><legend>Cómo querés participar</legend><div class="segments"><label><input name="perfil" type="radio" value="Soy inversor" checked><span>Soy inversor</span></label><label><input name="perfil" type="radio" value="Tengo un taller"><span>Tengo un taller</span></label></div></fieldset><button class="button" type="submit">Enviar</button><p class="mail-note">Se abre tu correo con el mensaje listo para enviar a <a href="mailto:misacastillo08@gmail.com">misacastillo08@gmail.com</a>.</p></form></div>
  </div>
 </section>
 </main>
 <footer class="site-footer" id="footer">
- <div class="footer-top"><span>llave</span><span>Quilmes, Buenos Aires</span><a href="mailto:misacastillo08@gmail.com">misacastillo08@gmail.com</a><a href="#arriba">Volver arriba ↑</a></div>
+ <div class="footer-top"><a class="brand" href="#arriba" aria-label="llave, volver al inicio"><img src="assets/logo.svg" width="38" height="38" alt="">llave</a><span>Quilmes, Buenos Aires</span><a href="mailto:misacastillo08@gmail.com">misacastillo08@gmail.com</a><a href="#arriba">Volver arriba ↑</a></div>
  <p class="footer-statement">Compará. Elegí. Confiá.</p>
  <div class="footer-bottom"><div class="source-credits"><p>Fuentes: AFAC, 2025 · parque automotor argentino; INDEC, Censo 2022 · población de Quilmes. Relevamiento propio: noviembre de 2026.</p><div class="image-credits"><a href="https://commons.wikimedia.org/w/index.php?curid=58218625" target="_blank" rel="noopener noreferrer">Calle de Bernal: Mbusin · CC BY-SA 4.0</a><a href="https://www.flickr.com/photos/26344495@N05/49967130491" target="_blank" rel="noopener noreferrer">Reparación: Ivan Radic · CC BY 2.0</a><a href="https://commons.wikimedia.org/w/index.php?curid=186975326" target="_blank" rel="noopener noreferrer">Disco de freno: Shixart1985 · CC BY 2.0</a></div></div><p class="copyright">© 2026 llave</p></div>
 </footer>
@@ -2171,21 +2265,41 @@ html, body { overflow-x: clip; }
   window.location.href = 'mailto:misacastillo08@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
  });
  document.getElementById('nombre').addEventListener('input', event => event.currentTarget.setCustomValidity(''));
- const stub = document.querySelector('.budget-stub');
- const budget = document.getElementById('presupuesto');
- const anchor = document.querySelector('.budget-anchor');
- const solution = document.getElementById('solucion');
- const footer = document.getElementById('footer');
- let morphProgress = 0;
- const updateStub = () => {
-  const isSolution = solution.getBoundingClientRect().top < innerHeight * .65;
-  const hasPassed = motionQuery.matches ? true : typeof ScrollTrigger === 'undefined' ? anchor.getBoundingClientRect().bottom < innerHeight : morphProgress > .82;
-  stub.classList.toggle('is-visible', hasPassed && footer.getBoundingClientRect().top > innerHeight);
-  document.getElementById('stub-label').textContent = isSolution ? '3 presupuestos verificados' : 'Presupuesto de Lucas';
-  document.getElementById('stub-total').textContent = isSolution ? 'desde $85.000' : '$480.000';
+ const ars = value => '$' + value.toLocaleString('es-AR', { maximumFractionDigits: 2 });
+ const marketPrice = document.getElementById('market-price');
+ const updateMarket = () => {
+  const price = Number(marketPrice.value);
+  // Illustrative logistic curve only: the ARS 15,000 sensitivity is an unmeasured assumption.
+  const fixedShare = Math.round(100 / (1 + Math.exp(-(price - 180000) / 15000)));
+  const variableShare = 100 - fixedShare;
+  document.getElementById('market-price-value').textContent = ars(price);
+  marketPrice.setAttribute('aria-valuetext', ars(price) + ' pesos argentinos');
+  document.getElementById('choice-fixed').textContent = fixedShare + ' %';
+  document.getElementById('choice-variable').textContent = variableShare + ' %';
+  document.getElementById('choice-fixed-bar').style.width = fixedShare + '%';
+  document.getElementById('choice-variable-bar').style.width = variableShare + '%';
+  document.getElementById('choice-summary').textContent = fixedShare === 50 ? 'A igual precio, la ilustración reparte las elecciones por igual.' : 'En esta ilustración, la mayoría elegiría el Taller ' + (fixedShare > 50 ? 'A.' : 'B.');
  };
- window.addEventListener('scroll', updateStub, { passive: true });
- updateStub();
+ marketPrice.disabled = false;
+ marketPrice.addEventListener('input', updateMarket);
+ updateMarket();
+ const calculatorInputs = ['avg-job', 'monthly-clients', 'exchange-rate'].map(id => document.getElementById(id));
+ const updateCalculator = () => {
+  const [job, clients, rate] = calculatorInputs.map(input => input.value.trim() === '' ? NaN : Number(input.value));
+  const valid = Number.isFinite(job) && job >= 1 && Number.isInteger(clients) && clients >= 0 && Number.isFinite(rate) && rate >= 1 && Number.isFinite(job * clients) && Number.isFinite(50 * rate);
+  document.getElementById('calculator-status').textContent = valid ? '' : 'Ingresá un precio y un tipo de cambio de al menos 1, y una cantidad entera de clientes desde 0.';
+  if (!valid) {
+   ['subscription-ars', 'monthly-revenue', 'recovery-count'].forEach(id => { document.getElementById(id).textContent = 'Completá valores válidos.'; });
+   return;
+  }
+  const cost = 50 * rate;
+  const customers = Math.ceil(cost / job);
+  document.getElementById('subscription-ars').textContent = ars(cost);
+  document.getElementById('monthly-revenue').textContent = ars(job * clients);
+  document.getElementById('recovery-count').textContent = 'Con ' + customers.toLocaleString('es-AR') + (customers === 1 ? ' cliente recuperás' : ' clientes recuperás') + ' la suscripción en facturación.';
+ };
+ calculatorInputs.forEach(input => { input.disabled = false; input.addEventListener('input', updateCalculator); });
+ updateCalculator();
  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
  gsap.registerPlugin(ScrollTrigger);
  const mm = gsap.matchMedia();
@@ -2198,26 +2312,22 @@ html, body { overflow-x: clip; }
    gsap.from(parts, { y: 24, opacity: 0, duration: .65, stagger: .07, ease: 'power2.out', scrollTrigger: { trigger: section, start: 'top 86%', once: true } });
   });
   gsap.from('.hero-copy > *', { y: 24, opacity: 0, stagger: .07, duration: .65, ease: 'power2.out' });
-  gsap.fromTo('.stamp', { scale: 1.3, opacity: 0 }, { scale: 1, opacity: 1, delay: .45, duration: .35, ease: 'power3.out' });
+  gsap.from('.hero-phone-front', { y: 42, rotation: -3, opacity: 0, duration: .95, delay: .1, ease: 'power3.out' });
+  gsap.from('.hero-phone-back', { y: 60, rotation: 3, opacity: 0, duration: 1.1, delay: .2, ease: 'power3.out' });
   document.querySelectorAll('[data-paper]').forEach(paper => {
    gsap.fromTo(paper, { rotation: 0 }, { rotation: Number(paper.dataset.paper), duration: .8, ease: 'power2.out', scrollTrigger: { trigger: paper, start: 'top 88%', once: true } });
   });
   document.querySelectorAll('[data-count]').forEach(el => {
    const state = { value: 0 };
-   gsap.to(state, { value: Number(el.dataset.count), duration: 1.4, ease: 'power2.out', onUpdate: () => { el.textContent = (el.dataset.prefix || '') + state.value.toLocaleString('es-AR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + (el.dataset.suffix || ''); }, scrollTrigger: { trigger: el, start: 'top 92%', once: true } });
+   gsap.to(state, { value: Number(el.dataset.count), duration: 1.4, ease: 'power2.out', onUpdate: () => { el.textContent = (el.dataset.prefix || '') + state.value.toLocaleString('es-AR', { minimumFractionDigits: Number(el.dataset.decimals ?? 1), maximumFractionDigits: Number(el.dataset.decimals ?? 1) }) + (el.dataset.suffix || ''); }, scrollTrigger: { trigger: el, start: 'top 92%', once: true } });
   });
   gsap.from('.bar', { scaleX: 0, duration: .9, stagger: .07, ease: 'power2.out', scrollTrigger: { trigger: '.concerns', start: 'top 88%', once: true } });
   gsap.fromTo('.work-photo img', { scale: 1.08 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: '.work-section', start: 'top bottom', end: 'bottom top', scrub: .8 } });
-  const timeline = gsap.timeline({ scrollTrigger: { trigger: anchor, start: 'top 120px', end: '+=400', pin: anchor, pinSpacing: false, scrub: .7, invalidateOnRefresh: true, onUpdate: self => { morphProgress = self.progress; updateStub(); } } });
-  const targetWidth = () => innerWidth < 700 ? 120 : 200;
-  timeline.to(budget, { x: () => Math.max(20, Math.min(96, innerWidth * .05)) - anchor.getBoundingClientRect().left, y: () => innerHeight - 120 - 22 - budget.offsetHeight * targetWidth() / budget.offsetWidth, scale: () => targetWidth() / budget.offsetWidth, ease: 'none', duration: .8 }, 0)
-   .to(budget, { opacity: 0, duration: .2, ease: 'none' }, .8)
-   .to('.hero-caption', { opacity: 0, duration: .3, ease: 'none' }, 0);
-  return () => { morphProgress = 0; updateStub(); };
+
  });
  document.fonts.ready.then(() => ScrollTrigger.refresh());
  window.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
- motionQuery.addEventListener('change', updateStub);
+
 })();
 </script>
 </body>
